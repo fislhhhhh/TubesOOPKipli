@@ -15,6 +15,10 @@ public class Sun extends Shapes implements CustomListener{
     Random acak = new Random();
     String gambarsun = "";
     BufferedImage Png=null;
+    Boolean gone = false;
+    int waktudiam = 0;
+    int bebas = acak.nextInt(720,1080);
+    int timer = 0;
 
     protected Sun(int X ,int Y){
         super(X,Y);
@@ -45,17 +49,38 @@ public class Sun extends Shapes implements CustomListener{
         }
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
+    
+    public void sunhilang(){
+        gone = true;
+    }
 
     public void actionPerformed() {
-            int bebas = acak.nextInt(120,240);
-            while (bebas > 0){
-                Start_falling();
-                Y = Y -1;
-                bebas = bebas -1 ;
-            }
-            Stop_falling();
+            
+        // if(falling){
+        //     if(timer > 10){
+        //         Y += 2; // Mengubah posisi Y untuk turun
+        //         timer = 0; // Reset timer setelah setiap pergerakan
+        //     }
+        // }
+        // timer++;
+        
+        
+        if(falling && bebas > 0){
+            if(timer > 10){
+                Y += 2; // Mengubah posisi Y untuk turun
+                timer = 0; // Reset timer setelah setiap pergerakan
+                }
+                bebas-=1;
         }
-    
+        else{   
+            waktudiam +=1;
+            if(waktudiam == 300){
+            sunhilang();
+            }
+        }
+        timer++;
+
+}
     
 
 
