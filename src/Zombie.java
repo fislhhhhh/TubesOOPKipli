@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.Target;
 
 import javax.imageio.ImageIO;
 
@@ -28,7 +27,7 @@ public class Zombie extends Square implements CustomListener {
     public void Stop_moving(){
         moving=false;
     }
-    
+
     public void Plant_In_Range(){
         Start_moving();
         for (Plant plant : Screen.plants) {
