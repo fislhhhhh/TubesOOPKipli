@@ -43,15 +43,18 @@ public class Zombie extends Square implements CustomListener {
 
     public boolean check_Range(Shapes shape){
         if(shape!=null){
-            if(X-1*Screen.tilesize<shape.getX()&&X>shape.getX()){
-                return true;
-            }else
-            {
+            if(Y==shape.Y){
+                if(X-1*Screen.tilesize<shape.getX()&&X>shape.getX()){
+                    return true;
+                }else
+                {
+                    return false;
+                }
+            }else{
                 return false;
             }
-        }else{
-            return false;
         }
+        return false;
     }
 
     public void damage(int amount){

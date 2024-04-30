@@ -18,7 +18,6 @@ public class Plant extends Shapes implements CustomListener  {
     BufferedImage Png=null;
     protected Plant(int X, int Y) {
         super(X, Y);
-        shoot();
         //TODO Auto-generated constructor stub
     }
 
