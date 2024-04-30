@@ -13,7 +13,8 @@ public class Sun extends Shapes implements CustomListener{
     int intervalsun;
     boolean falling = false ;
     Random acak = new Random();
-    
+    String gambarsun = "";
+    BufferedImage Png=null;
 
     protected Sun(int X ,int Y){
         super(X,Y);
@@ -35,6 +36,16 @@ public class Sun extends Shapes implements CustomListener{
     public void hapussun(){
         jumlahsun = 0;
     }
+
+    public void Draw(Graphics2D g2) {
+        try {
+            Png = ImageIO.read(new File(gambarsun));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
+    }
+
     public void actionPerformed() {
             int bebas = acak.nextInt(120,240);
             while (bebas > 0){
