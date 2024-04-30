@@ -1,5 +1,3 @@
-import java.awt.Rectangle;
-
 import javax.swing.*;
 public class Gamepanel {
     static Screen screen = new Screen();
@@ -13,6 +11,8 @@ public class Gamepanel {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         Zombie zombie=new Zombie(10*Screen.tilesize, 1*Screen.tilesize);
+        Spawner.spawn_Zombie(zombie);
+        zombie=new Zombie(10*Screen.tilesize, 2*Screen.tilesize);
         Spawner.spawn_Zombie(zombie);
         Plant plant=new Plant(1*Screen.tilesize, 1*Screen.tilesize);
         Planter.spawn_Plant(plant);

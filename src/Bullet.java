@@ -44,6 +44,9 @@ public class Bullet extends Square implements CustomListener{
     }
     public void actionPerformed() {
         X+=2;
+        if(X>11*Screen.tilesize){
+            hit=true;
+        }
         for (Zombie zombie : Screen.zombies) {
             if(check_hit(zombie)){
                 hit(zombie);
