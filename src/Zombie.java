@@ -28,6 +28,7 @@ public class Zombie extends Square implements CustomListener {
     public void Stop_moving(){
         moving=false;
     }
+    
     public void Plant_In_Range(){
         Start_moving();
         for (Plant plant : Screen.plants) {
@@ -39,6 +40,7 @@ public class Zombie extends Square implements CustomListener {
             }
         }
     }
+
     public boolean check_Range(Shapes shape){
         if(shape!=null){
             if(X-1*Screen.tilesize<shape.getX()&&X>shape.getX()){
@@ -51,6 +53,7 @@ public class Zombie extends Square implements CustomListener {
             return false;
         }
     }
+
     public void damage(int amount){
         Health=Health-amount;
         System.out.println(Health);
@@ -58,10 +61,12 @@ public class Zombie extends Square implements CustomListener {
             dead=true;
         }
     }
+
     protected Zombie(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
+
     public void Draw(Graphics2D g2) {
         try {
             Png = ImageIO.read(new File("res/Zombies/images.jpg"));
@@ -70,6 +75,7 @@ public class Zombie extends Square implements CustomListener {
         }
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
+
     @Override
     public void actionPerformed() {
         if(moving){

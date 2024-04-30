@@ -34,7 +34,32 @@ public class Plant extends Shapes implements CustomListener  {
             dead=true;
         }
     }
+    public boolean check_Range(Shapes shape){
+        switch (range) {
+            case -1:
+            if(shape!=null){
+                if(Y==shape.getY()){
+                    System.out.println("case -1");
+                    return true;
+                }
+            }
+            break;
 
+            case 0:
+            System.out.println("case 0");
+            return true;
+
+            default:
+            if(shape!=null){
+                if(X<shape.getX()&&X+1*Screen.tilesize>shape.getX()){
+                    return true;
+                }
+            }
+            return false;
+        }
+        return false;
+        
+    }
     public void Draw(Graphics2D g2) {
         try {
             Png = ImageIO.read(new File("res/Plants/images.jpg"));
@@ -46,7 +71,12 @@ public class Plant extends Shapes implements CustomListener  {
     @Override
     public void actionPerformed() {
         if(time>60*attack_speed){
-            shoot();
+            
+            for (Zombie zombie : Screen.zombies) {
+                if(check_Range(zombie)){
+                    shoot();
+                }
+            }
             time=0 ;
         }else{
             time++;

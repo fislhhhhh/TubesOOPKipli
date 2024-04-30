@@ -31,10 +31,14 @@ public class Bullet extends Square implements CustomListener{
         hit=true;
     }
     public boolean check_hit(Shapes shape){
-        if(X<shape.getX()&&X+1*Screen.tilesize/2>shape.getX()){
-            return true;
-        }else
-        {
+        if(Y==shape.Y){
+            if(X<shape.getX()&&X+1*Screen.tilesize/2>shape.getX()){
+                return true;
+            }else
+            {
+                return false;
+            }
+        }else{
             return false;
         }
     }
