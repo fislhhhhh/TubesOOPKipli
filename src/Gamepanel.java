@@ -1,7 +1,8 @@
+import java.awt.Rectangle;
+
 import javax.swing.*;
 public class Gamepanel {
     static Screen screen = new Screen();
-    static Peashooter peashooter =new Peashooter(1*Screen.tilesize, 1*Screen.tilesize);
     public void Startgame() {
         JFrame frame =new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -13,8 +14,8 @@ public class Gamepanel {
         frame.setVisible(true);
         Zombie zombie=new Zombie(10*Screen.tilesize, 1*Screen.tilesize);
         Spawner.spawn_Zombie(zombie);
-        zombie=new Zombie(10*Screen.tilesize, 2*Screen.tilesize);
-        Spawner.spawn_Zombie(zombie);
+        Plant plant=new Plant(1*Screen.tilesize, 1*Screen.tilesize);
+        Planter.spawn_Plant(plant);
         Ticksystem ticksystem=new Ticksystem();
         ticksystem.Startgame();
     }

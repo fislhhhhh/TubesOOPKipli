@@ -1,9 +1,6 @@
-public class Projectile {
-    static int pa=0;
+public class Projectile  {
     public static void Project_in(Bullet bullet ){
-            Screen.bullets[pa]=bullet;
-            pa++;
-            System.out.println(pa);
+            Screen.bullets.add(bullet);
 
     }
 }

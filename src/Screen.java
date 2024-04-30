@@ -4,8 +4,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 public class Screen extends JPanel {
-    static final int originaltilesize=16;
+    static final int originaltilesize=20;
     static final int scale =3;
     static final int tilesize = originaltilesize*scale;
     final int maxrow =8;
@@ -13,10 +14,9 @@ public class Screen extends JPanel {
     final int screenwidth=maxcol*tilesize;
     final int screenheight=maxrow*tilesize;
     int a=0;
-    public static Bullet bullets[]= new Bullet[20];
-    public static Zombie zombies[]= new Zombie[20];
-    BufferedImage test;
-    Bullet bullet=new Bullet(0,0);
+    public static ArrayList<Bullet> bullets= new ArrayList<>();
+    public static ArrayList<Zombie> zombies= new ArrayList<>();
+    public static ArrayList<Plant> plants= new ArrayList<>();
     public Screen(){
         this.setPreferredSize(new Dimension(screenwidth,screenheight));
         this.setBackground(Color.BLACK);
@@ -43,24 +43,19 @@ public class Screen extends JPanel {
             new Deck(i*tilesize, 0*tilesize).Draw(g2);
             new Deck(i*tilesize, 7*tilesize).Draw(g2);
         }
-        // Bullet bullet = new Bullet(0*tilesize+a*2, 1*tilesize);
-        // a++;
-        // bullet.Draw(g2);
-        try {
-            test = ImageIO.read(new File("res/Plants/images.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        BufferedImage image=test;
-        g2.drawImage(image,1*tilesize,1*tilesize,1*tilesize,1*tilesize,null);
-        for (int i = 0; i < zombies.length; i++) {
-            if (zombies[i]!=null) {
-                zombies[i].Draw(g2);
+        for (int i = 0; i < zombies.size(); i++) {
+            if (zombies.get(i)!=null) {
+                zombies.get(i).Draw(g2);
             }
         }
-        for (int i = 0; i < bullets.length; i++) {
-            if (bullets[i]!=null) {
-                bullets[i].Draw(g2);
+        for (int i = 0; i < plants.size(); i++) {
+            if (plants.get(i)!=null) {
+                plants.get(i).Draw(g2);
+            }
+        }
+        for (int i = 0; i < bullets.size(); i++) {
+            if (bullets.get(i)!=null) {
+                bullets.get(i).Draw(g2);
             }
         }
         g2.dispose();

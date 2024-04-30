@@ -1,0 +1,56 @@
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class Plant extends Shapes implements CustomListener  {
+    String name="Plant";
+    int cost=50;
+    int Health =100;
+    int attack_speed=4;
+    int attack_damage=25;
+    int range=-1;
+    int cooldown=10;
+    boolean dead =false;
+    int time=0;
+    BufferedImage Png=null;
+    protected Plant(int X, int Y) {
+        super(X, Y);
+        shoot();
+        //TODO Auto-generated constructor stub
+    }
+
+    public void shoot(){
+        Bullet bullet = new Bullet(X, Y,attack_damage);
+        Projectile.Project_in(bullet);
+    }
+
+    public void damage(int amount){
+        Health=Health-amount;
+        System.out.println(Health+" plant health" );
+        if(Health<=0){
+            dead=true;
+        }
+    }
+
+    public void Draw(Graphics2D g2) {
+        try {
+            Png = ImageIO.read(new File("res/Plants/images.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
+    }
+    @Override
+    public void actionPerformed() {
+        if(time>60*attack_speed){
+            shoot();
+            time=0 ;
+        }else{
+            time++;
+        }
+    }
+    
+}

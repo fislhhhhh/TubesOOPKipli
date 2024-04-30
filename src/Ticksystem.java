@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 public class Ticksystem implements Runnable {
     Thread gamThread;
     int fps=60;
@@ -29,16 +31,7 @@ public class Ticksystem implements Runnable {
             lastTime=currettime;
             if(delta>=1){
                 Update();
-                for (Bullet bullet : Screen.bullets) {
-                    this.setCustomListener(bullet);
-                    this.doSomething();
-                }
-                for (Zombie zombie : Screen.zombies) {
-                    this.setCustomListener(zombie);
-                    this.doSomething();
-                }
-                this.setCustomListener(Gamepanel.peashooter);
-                this.doSomething();
+
                 delta--;
             }
             
@@ -47,6 +40,33 @@ public class Ticksystem implements Runnable {
 
     public void Update(){
         Gamepanel.up();
+        Iterator<Bullet> bulletIterator = Screen.bullets.iterator();
+        while (bulletIterator.hasNext()) {
+            Bullet bullet = bulletIterator.next();
+            this.setCustomListener(bullet);
+            this.doSomething();
+            if (bullet.hit) {
+                bulletIterator.remove(); // Remove the bullet from the list
+            }
+        }
+        Iterator<Zombie> zombieIterator = Screen.zombies.iterator();
+        while (zombieIterator.hasNext()) {
+            Zombie zombie = zombieIterator.next();
+            this.setCustomListener(zombie);
+            this.doSomething();
+            if (zombie.dead) {
+                zombieIterator.remove(); // Remove the bullet from the list
+            }
+        }
+        Iterator<Plant> plantIterator = Screen.plants.iterator();
+        while (plantIterator.hasNext()) {
+            Plant plant = plantIterator.next();
+            this.setCustomListener(plant);
+            this.doSomething();
+            if (plant.dead) {
+                plantIterator.remove(); // Remove the bullet from the list
+            }
+        }
     }
     
 }
