@@ -16,6 +16,7 @@ public class Plant extends Shapes implements CustomListener  {
     boolean dead =false;
     int time=0;
     BufferedImage Png=null;
+    String picture="res/Plants/images.jpg";
     protected Plant(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
@@ -61,7 +62,7 @@ public class Plant extends Shapes implements CustomListener  {
     }
     public void Draw(Graphics2D g2) {
         try {
-            Png = ImageIO.read(new File("res/Plants/images.jpg"));
+            Png = ImageIO.read(new File(picture));
         } catch (IOException e) {
             e.printStackTrace();
         }

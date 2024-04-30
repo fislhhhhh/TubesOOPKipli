@@ -19,6 +19,7 @@ public class Zombie extends Square implements CustomListener {
     boolean dead=false;
     boolean attack=false;
     Plant target=null;
+    String picture="res/Zombies/images.jpg";
     public void Attack(Plant plant){
         plant.damage(attack_damage);
     }
@@ -72,7 +73,7 @@ public class Zombie extends Square implements CustomListener {
 
     public void Draw(Graphics2D g2) {
         try {
-            Png = ImageIO.read(new File("res/Zombies/images.jpg"));
+            Png = ImageIO.read(new File(picture));
         } catch (IOException e) {
             e.printStackTrace();
         }
