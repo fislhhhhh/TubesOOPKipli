@@ -6,7 +6,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-public class Sun extends Shapes implements CustomListener{
+public class Sun extends Shapes{
     String namesun = "Sun";
     int jumlahsun = 0;
     int pointsun = 25;
@@ -34,7 +34,9 @@ public class Sun extends Shapes implements CustomListener{
     public void Stop_falling(){
         falling=false;
     }
-    
+    public void sunpakai(int amount){
+        totalsun -= amount;
+    }
     public void sunnambah(){
         totalsun = totalsun + pointsun;
     }
