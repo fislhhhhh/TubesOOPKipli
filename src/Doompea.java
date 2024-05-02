@@ -27,11 +27,11 @@ public class Doompea extends Plant {
     public void shoot(){
         
             for (Zombie zombie : Screen.zombies) {
-                zombie.damage(attack_damage);  // Apply damage to every zombie
-                zombie.dead = true;  // Optionally set zombies as dead if damage is fatal
+                zombie.damage(attack_damage);  
+                zombie.dead = true;  
             }
-            hasAttacked = true;  // Mark as attacked to prevent further attacks
-            afterkill();  // Call afterkill to handle cleanup of Jalapeno itself
+            hasAttacked = true;  
+            afterkill();  
         }
         
     
