@@ -16,7 +16,7 @@ public class Squash extends Plant  {
     boolean hasAttacked = false;
     int time=0;
     BufferedImage Png=null;
-    String picture="res/Plants/images.jpg";
+    String picture="res/Plants/Squash.jpg";
     protected Squash(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
@@ -93,6 +93,10 @@ public class Squash extends Plant  {
     }
     public String getPicture() {
         return picture;
+    }
+    public void spawn_Plant(){
+        Squash squash=new Squash(X, Y);
+        Screen.plants.add(squash);
     }
 }
     
