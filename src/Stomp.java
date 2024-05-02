@@ -17,6 +17,7 @@ public class Stomp extends Bullet{
     
     public void Draw(Graphics2D g2) {
       
+        
     }
     
     public void hit(Zombie zombie){

@@ -14,7 +14,7 @@ public class Squash extends Plant  {
     int range=1;
     int cooldown=20;
     boolean hasAttacked = false;
-    int time=0;
+    int time=0; 
     BufferedImage Png=null;
     String picture="res/Plants/images.jpg";
     protected Squash(int X, int Y) {
