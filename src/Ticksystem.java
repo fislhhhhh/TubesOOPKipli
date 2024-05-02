@@ -1,9 +1,10 @@
 import java.util.Iterator;
-
+import java.util.Random;
 public class Ticksystem implements Runnable {
     Thread gamThread;
     int fps=60;
     int i=0;
+    int timer=0;
     private CustomListener listener;
 
     public void setCustomListener(CustomListener listener) {
@@ -65,6 +66,18 @@ public class Ticksystem implements Runnable {
             if (plant.dead) {
                 plantIterator.remove(); // Remove the bullet from the list
             }
+        }
+        if(timer>60){
+            Random random =new Random();
+            int y=random.nextInt(1,11);
+            if(y==3||y==5||y==7){
+                y =random.nextInt(1,7);
+                Zombie zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
+                Spawner.spawn_Zombie(zombie);
+            }
+            timer=0;
+        }else{
+            timer++;
         }
     }
     

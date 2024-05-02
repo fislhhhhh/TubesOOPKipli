@@ -32,7 +32,6 @@ public class Sunflower extends Plant   {
 
     public void makesun(){
         Sun matahari = new Sun(xsun, ysun);
-        matahari.isfromflower = true;
     }
 
     public void damage(int amount){
