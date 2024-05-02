@@ -19,6 +19,7 @@ public class Zombie extends Square implements CustomListener {
     boolean attack=false;
     Plant target=null;
     String picture="res/Zombies/images.jpg";
+    Boolean is_slowed=false;
     public void Attack(Plant plant){
         plant.damage(attack_damage);
     }
