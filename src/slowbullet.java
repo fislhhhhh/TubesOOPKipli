@@ -3,12 +3,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-public class slowbullet extends Bullet {
+public class Slowbullet extends Bullet {
     int time=0;
     int damage=0;
     private BufferedImage Png;
     Boolean hit=false;
-    protected slowbullet(int X, int Y, int damage) {
+    protected Slowbullet(int X, int Y, int damage) {
         super(X, Y,damage);
         //TODO Auto-generated constructor stub
     }
