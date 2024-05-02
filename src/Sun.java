@@ -43,6 +43,7 @@ public class Sun extends Shapes{
         timer = 0; // Reset timer setelah setiap pergerakan
         }
         timer++;
+        
     }
 }
 
