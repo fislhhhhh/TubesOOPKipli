@@ -19,6 +19,8 @@ public class Sun extends Shapes implements CustomListener{
     int waktudiam = 0;
     int bebas = acak.nextInt(720,1080);
     int timer = 0;
+    boolean isfromflower = false;
+    static int totalsun = 0;
 
     protected Sun(int X ,int Y){
         super(X,Y);
@@ -34,11 +36,14 @@ public class Sun extends Shapes implements CustomListener{
     }
     
     public void sunnambah(){
-        jumlahsun = jumlahsun + 25;
+        totalsun = totalsun + pointsun;
     }
 
     public void hapussun(){
         jumlahsun = 0;
+    }
+    public int gettotalsun(){
+        return totalsun;
     }
 
     public void Draw(Graphics2D g2) {
@@ -64,26 +69,34 @@ public class Sun extends Shapes implements CustomListener{
         // }
         // timer++;
         
-        
-        if(falling && bebas > 0){
-            if(timer > 10){
-                Y += 2; // Mengubah posisi Y untuk turun
-                timer = 0; // Reset timer setelah setiap pergerakan
-                }
-                bebas-=1;
-        }
-        else{   
+        if (isfromflower){
             waktudiam +=1;
             if(waktudiam == 300){
             sunhilang();
+            sunnambah();
+            }
+        }
+        else{
+            if(falling && bebas > 0){
+                if(timer > 10){
+                    Y += 2; // Mengubah posisi Y untuk turun
+                    timer = 0; // Reset timer setelah setiap pergerakan
+                    }
+                    bebas-=1;
+            }
+            else{   
+                waktudiam +=1;
+                if(waktudiam == 300){
+                    sunhilang();
+                    sunnambah();
+                }
+            
             }
         }
         timer++;
-
+    }
 }
+
     
 
-
-
-}
 

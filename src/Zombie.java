@@ -83,10 +83,19 @@ public class Zombie extends Square implements CustomListener {
     @Override
     public void actionPerformed() {
         if(moving){
+            if(is_slowed){
+                if (timer > 10){
+                    X-=1;
+                    Plant_In_Range();
+                    timer = 0;
+                }
+            }
+            else{
             if(timer>5){
                 X-=1;
                 Plant_In_Range();
                 timer=0;
+            }
             }
         }else{
             if(timer>60){
