@@ -26,6 +26,7 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
         this.setDoubleBuffered(true);
         addMouseListener(this);
         addMouseMotionListener(this);
+        
     }
     @Override
     public void paintComponent(Graphics g) {

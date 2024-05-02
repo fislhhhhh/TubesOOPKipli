@@ -1,3 +1,5 @@
+import java.awt.BorderLayout;
+
 import javax.swing.*;
 
 public class Gamepanel  {
@@ -13,6 +15,7 @@ public class Gamepanel  {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        Sun sun = new Sun(0, 0);
         Zombie zombie=new Zombie(10*Screen.tilesize, 1*Screen.tilesize);
         Spawner.spawn_Zombie(zombie);
         zombie=new Zombie(10*Screen.tilesize, 2*Screen.tilesize);
