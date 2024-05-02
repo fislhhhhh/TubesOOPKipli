@@ -17,7 +17,7 @@ public class Sunflower extends Plant   {
     boolean dead =false;
     BufferedImage Png=null;
 
-    private String picture="res/Plants/images.jpg";
+    private String picture="res/Plants/Sunflowerremove.png";
     private int timer=0;
     private int xsun;
     private int ysun;

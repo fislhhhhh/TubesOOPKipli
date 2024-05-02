@@ -23,7 +23,7 @@ public class Squash extends Plant  {
     }
 
     public void shoot(){
-        Bullet bullet = new Bullet(X, Y,attack_damage);
+        Bullet bullet = new Stomp(X, Y,attack_damage);
         Projectile.Project_in(bullet);
     }
 
