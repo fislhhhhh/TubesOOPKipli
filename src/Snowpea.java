@@ -5,29 +5,29 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Squash extends Plant  {
-    String name="Squash";
-    int cost=50;
+public class Snowpea extends Plant {
+    String name="snowpea";
+    int cost=175;
     int Health =100;
-    int attack_speed=0;
-    int attack_damage=5000;
-    int range=1;
-    int cooldown=20;
-    boolean hasAttacked = false;
+    int attack_speed=4;
+    int attack_damage=25;
+    int range=-1;
+    int cooldown=10;
+    boolean dead =false;
     int time=0;
     BufferedImage Png=null;
-    String picture="res/Plants/images.jpg";
-    protected Squash(int X, int Y) {
+    private String picture;
+    protected Snowpea(int X, int Y) {
         super(X, Y);
+        picture="res/Plants/Snow.jpg";
         //TODO Auto-generated constructor stub
     }
 
     public void shoot(){
         Bullet bullet = new Bullet(X, Y,attack_damage);
         Projectile.Project_in(bullet);
+        
     }
-
-    
 
     public void damage(int amount){
         Health=Health-amount;
@@ -35,10 +35,6 @@ public class Squash extends Plant  {
         if(Health<=0){
             dead=true;
         }
-    }
-    public void afterkill(){
-       this.Health = 0;
-       dead = true;
     }
     public boolean check_Range(Shapes shape){
         switch (range) {
@@ -66,6 +62,9 @@ public class Squash extends Plant  {
         return false;
         
     }
+    public void sloweffect(Zombie zombie){
+        zombie.is_slowed = true;
+    }
     public void Draw(Graphics2D g2) {
         try {
             Png = ImageIO.read(new File(picture));
@@ -74,26 +73,23 @@ public class Squash extends Plant  {
         }
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
-
     @Override
     public void actionPerformed() {
-        System.out.println(this.dead);
-        if (!hasAttacked) {  
+        if(time>60*attack_speed){
+            
             for (Zombie zombie : Screen.zombies) {
-                if (check_Range(zombie)) {
+                if(check_Range(zombie)){
                     shoot();
-                    hasAttacked = true;  
-                    break;  
+                    
                 }
             }
-        }
-        if (hasAttacked) {  
-            afterkill();  
+            time=0 ;
+        }else{
+            time++;
         }
     }
     public String getPicture() {
         return picture;
     }
-}
     
-
+}

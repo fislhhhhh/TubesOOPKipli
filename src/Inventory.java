@@ -16,8 +16,8 @@ public class Inventory extends JPanel implements MouseListener{
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
         addMouseListener(this);
-        Plant plant=new Plant(2, 2);
-        Iplant.add(plant);
+        Squash squash=new Squash(2, 2);
+        Iplant.add(squash);
         Snowpea snowpea=new Snowpea(1, 2);
         Iplant.add(snowpea);
         int X=1;
