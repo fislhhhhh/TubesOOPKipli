@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class snowpea extends Plant {
+public class Snowpea extends Plant {
     String name="snowpea";
     int cost=175;
     int Health =100;
@@ -17,7 +17,7 @@ public class snowpea extends Plant {
     int time=0;
     BufferedImage Png=null;
     String picture="res/Plants/Snow.jpg";
-    public snowpea(int X, int Y) {
+    protected Snowpea(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
