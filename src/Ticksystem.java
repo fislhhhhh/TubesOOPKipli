@@ -31,7 +31,6 @@ public class Ticksystem implements Runnable {
             lastTime=currettime;
             if(delta>=1){
                 Update();
-
                 delta--;
             }
             

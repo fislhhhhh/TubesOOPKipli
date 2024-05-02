@@ -1,8 +1,11 @@
 import javax.swing.*;
-public class Gamepanel {
+
+public class Gamepanel  {
     static Screen screen = new Screen();
-    public void Startgame() {
-        JFrame frame =new JFrame();
+    static JFrame frame;
+    static Inventory inventory;
+    public static void Startgame() {
+        frame.remove(inventory);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
         screen = new Screen();
@@ -16,14 +19,22 @@ public class Gamepanel {
         Spawner.spawn_Zombie(zombie);
         Plant plant=new Plant(1*Screen.tilesize, 1*Screen.tilesize);
         Planter.spawn_Plant(plant);
+    }
+    public static void Inventoryscene(){
+        frame =new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+        inventory = new Inventory();
+        frame.add(inventory);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
         Ticksystem ticksystem=new Ticksystem();
         ticksystem.Startgame();
     }
     public static void up(){
         screen.screenrefresh();
+        inventory.screenrefresh();
     }
-
-    
-
 }
 

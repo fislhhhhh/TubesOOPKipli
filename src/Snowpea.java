@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Plant extends Shapes implements CustomListener  {
+public class Snowpea extends Plant  {
     String name="Plant";
     int cost=50;
     int Health =100;
@@ -16,8 +16,8 @@ public class Plant extends Shapes implements CustomListener  {
     boolean dead =false;
     int time=0;
     BufferedImage Png=null;
-    private String picture="res/Plants/images.jpg";
-    protected Plant(int X, int Y) {
+    private String picture="res/Plants/Snow.jpg";
+    protected Snowpea(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
@@ -85,4 +85,5 @@ public class Plant extends Shapes implements CustomListener  {
     public String getPicture() {
         return picture;
     }
+    
 }

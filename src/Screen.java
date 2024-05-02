@@ -40,8 +40,8 @@ public class Screen extends JPanel {
             new Land(i*tilesize, 6*tilesize).Draw(g2);
         }
         for(int i =1;i<10;i++){
-            new Deck(i*tilesize, 0*tilesize).Draw(g2);
-            new Deck(i*tilesize, 7*tilesize).Draw(g2);
+            new Deck(i, 0,"res/Deck.png").Draw(g2);
+            new Deck(i, 7,"res/Deck.png").Draw(g2);
         }
         for (int i = 0; i < zombies.size(); i++) {
             if (zombies.get(i)!=null) {
@@ -56,6 +56,15 @@ public class Screen extends JPanel {
         for (int i = 0; i < bullets.size(); i++) {
             if (bullets.get(i)!=null) {
                 bullets.get(i).Draw(g2);
+            }
+        }
+        int si=1;
+        for (Inventorybag inventorybag : Inventory.decks) {
+            if(inventorybag!=null){
+                inventorybag.X2=si*60;
+                inventorybag.Y2=0;
+                inventorybag.Draw(g2);
+                si++;
             }
         }
         g2.dispose();
