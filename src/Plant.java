@@ -85,4 +85,6 @@ public class Plant extends Shapes implements CustomListener  {
     public String getPicture() {
         return picture;
     }
+    public void spawn_Plant(){
+    }
 }

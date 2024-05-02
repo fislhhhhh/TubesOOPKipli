@@ -14,9 +14,9 @@ public class Squash extends Plant  {
     int range=1;
     int cooldown=20;
     boolean hasAttacked = false;
-    int time=0;
+    int time=0; 
     BufferedImage Png=null;
-    String picture="res/Plants/images.jpg";
+    String picture="res/Plants/Squash.jpg";
     protected Squash(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
@@ -93,6 +93,10 @@ public class Squash extends Plant  {
     }
     public String getPicture() {
         return picture;
+    }
+    public void spawn_Plant(){
+        Squash squash=new Squash(X, Y);
+        Screen.plants.add(squash);
     }
 }
     

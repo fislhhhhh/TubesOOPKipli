@@ -7,32 +7,16 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 public class Sun extends Shapes{
-    String namesun = "Sun";
-    int jumlahsun = 0;
     int pointsun = 25;
     int intervalsun;
-    boolean falling = false ;
     Random acak = new Random();
     String gambarsun = "";
     BufferedImage Png=null;
-    Boolean gone = false;
-    int waktudiam = 0;
-    int bebas = acak.nextInt(720,1080);
     int timer = 0;
-    boolean isfromflower = false;
     static int totalsun = 0;
 
     protected Sun(int X ,int Y){
         super(X,Y);
-    }
-
-    public void Start_falling(){
-        falling=true;
-
-
-    }
-    public void Stop_falling(){
-        falling=false;
     }
     public void sunpakai(int amount){
         totalsun -= amount;
@@ -41,12 +25,6 @@ public class Sun extends Shapes{
         totalsun = totalsun + pointsun;
     }
 
-    public void hapussun(){
-        jumlahsun = 0;
-    }
-    public int gettotalsun(){
-        return totalsun;
-    }
 
     public void Draw(Graphics2D g2) {
         try {
@@ -57,45 +35,15 @@ public class Sun extends Shapes{
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
     
-    public void sunhilang(){
-        gone = true;
-    }
+
 
     public void actionPerformed() {
-            
-        // if(falling){
-        //     if(timer > 10){
-        //         Y += 2; // Mengubah posisi Y untuk turun
-        //         timer = 0; // Reset timer setelah setiap pergerakan
-        //     }
-        // }
-        // timer++;
-        
-        if (isfromflower){
-            waktudiam +=1;
-            if(waktudiam == 300){
-            sunhilang();
-            sunnambah();
-            }
-        }
-        else{
-            if(falling && bebas > 0){
-                if(timer > 10){
-                    Y += 2; // Mengubah posisi Y untuk turun
-                    timer = 0; // Reset timer setelah setiap pergerakan
-                    }
-                    bebas-=1;
-            }
-            else{   
-                waktudiam +=1;
-                if(waktudiam == 300){
-                    sunhilang();
-                    sunnambah();
-                }
-            
-            }
+        if(timer > 1 ){
+        sunnambah(); // Mengubah posisi Y untuk turun
+        timer = 0; // Reset timer setelah setiap pergerakan
         }
         timer++;
+        
     }
 }
 

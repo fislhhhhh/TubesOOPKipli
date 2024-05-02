@@ -91,5 +91,8 @@ public class Snowpea extends Plant {
     public String getPicture() {
         return picture;
     }
-    
+    public void spawn_Plant(){
+        Snowpea snowpea=new Snowpea(X, Y);
+        Screen.plants.add(snowpea);
+    }
 }
