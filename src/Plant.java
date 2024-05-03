@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Plant extends Shapes implements CustomListener  {
     String name="Plant";
-    int cost=50;
+    private int cost=50;
     int Health =100;
     int attack_speed=4;
     int attack_damage=25;
@@ -86,5 +86,8 @@ public class Plant extends Shapes implements CustomListener  {
         return picture;
     }
     public void spawn_Plant(){
+    }
+    public int getCost() {
+        return cost;
     }
 }

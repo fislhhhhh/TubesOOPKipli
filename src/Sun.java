@@ -6,20 +6,20 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-public class Sun extends Shapes{
+public class Sun extends Shapes implements CustomListener{
     int pointsun = 25;
-    int intervalsun;
+    int intervalsun=0;
     Random acak = new Random();
     String gambarsun = "";
     BufferedImage Png=null;
     int timer = 0;
-    static int totalsun = 0;
-
+    static Sun sun;
+    static int totalsun = 200;
     protected Sun(int X ,int Y){
         super(X,Y);
     }
-    public void sunpakai(int amount){
-        totalsun -= amount;
+    static void sunpakai(int amount){
+        totalsun =totalsun- amount;
     }
     public void sunnambah(){
         totalsun = totalsun + pointsun;
@@ -36,13 +36,16 @@ public class Sun extends Shapes{
     }
     
 
-
+    @Override
     public void actionPerformed() {
-        if(timer > 1 ){
-        sunnambah(); // Mengubah posisi Y untuk turun
-        timer = 0; // Reset timer setelah setiap pergerakan
+        if(Screen.day){
+            if(timer > intervalsun*60 ){
+            sunnambah(); // Mengubah posisi Y untuk turun
+            timer = 0; // Reset timer setelah setiap pergerakan
+            intervalsun=acak.nextInt(5,11);
+            }
+            timer++;
         }
-        timer++;
         
     }
 }

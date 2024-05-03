@@ -7,14 +7,14 @@ import javax.imageio.ImageIO;
 
 public class Squash extends Plant  {
     String name="Squash";
-    int cost=50;
+    private int cost=50;
     int Health =100;
     int attack_speed=0;
     int attack_damage=5000;
     int range=1;
     int cooldown=20;
     boolean hasAttacked = false;
-    int time=0;
+    int time=0; 
     BufferedImage Png=null;
     String picture="res/Plants/Squash.jpg";
     protected Squash(int X, int Y) {
@@ -57,7 +57,7 @@ public class Squash extends Plant  {
 
             default:
             if(shape!=null){
-                if(X<shape.getX()&&X+1*Screen.tilesize>shape.getX()){
+                if(X<shape.getX()&&X+1*Screen.tilesize>shape.getX()&&Y==shape.getY()){
                     return true;
                 }
             }
@@ -77,7 +77,6 @@ public class Squash extends Plant  {
 
     @Override
     public void actionPerformed() {
-        System.out.println(this.dead);
         if (!hasAttacked) {  
             for (Zombie zombie : Screen.zombies) {
                 if (check_Range(zombie)) {
@@ -97,6 +96,9 @@ public class Squash extends Plant  {
     public void spawn_Plant(){
         Squash squash=new Squash(X, Y);
         Screen.plants.add(squash);
+    }
+    public int getCost() {
+        return cost;
     }
 }
     
