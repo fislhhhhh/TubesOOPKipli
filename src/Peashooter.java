@@ -5,29 +5,27 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Squash extends Plant  {
-    String name="Squash";
-    private int cost=50;
+public class Peashooter extends Plant  {
+    String name="Peashooter";
+    int cost=100;
     int Health =100;
-    int attack_speed=0;
-    int attack_damage=5000;
-    int range=1;
-    int cooldown=20;
-    boolean hasAttacked = false;
-    int time=0; 
+    int attack_speed=4;
+    int attack_damage=25;
+    int range=-1;
+    int cooldown=10;
+    boolean dead =false;
+    int time=0;
     BufferedImage Png=null;
-    String picture="res/Plants/Squash.jpg";
-    protected Squash(int X, int Y) {
+    private String picture="res/Plants/images.jpg";
+    protected Plant(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
 
     public void shoot(){
-        Bullet bullet = new Stomp(X, Y,attack_damage);
+        Bullet bullet = new Bullet(X, Y,attack_damage);
         Projectile.Project_in(bullet);
     }
-
-    
 
     public void damage(int amount){
         Health=Health-amount;
@@ -35,10 +33,6 @@ public class Squash extends Plant  {
         if(Health<=0){
             dead=true;
         }
-    }
-    public void afterkill(){
-       this.Health = 0;
-       dead = true;
     }
     public boolean check_Range(Shapes shape){
         switch (range) {
@@ -57,7 +51,7 @@ public class Squash extends Plant  {
 
             default:
             if(shape!=null){
-                if(X<shape.getX()&&X+1*Screen.tilesize>shape.getX()&&Y==shape.getY()){
+                if(X<shape.getX()&&X+1*Screen.tilesize>shape.getX()){
                     return true;
                 }
             }
@@ -74,32 +68,21 @@ public class Squash extends Plant  {
         }
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
-
     @Override
     public void actionPerformed() {
-        if (!hasAttacked) {  
+        if(time>60*attack_speed){
+            
             for (Zombie zombie : Screen.zombies) {
-                if (check_Range(zombie)) {
+                if(check_Range(zombie)){
                     shoot();
-                    hasAttacked = true;  
-                    break;  
                 }
             }
-        }
-        if (hasAttacked) {  
-            afterkill();  
+            time=0 ;
+        }else{
+            time++;
         }
     }
     public String getPicture() {
         return picture;
     }
-    public void spawn_Plant(){
-        Squash squash=new Squash(X, Y);
-        Screen.plants.add(squash);
-    }
-    public int getCost() {
-        return cost;
-    }
 }
-    
-

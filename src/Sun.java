@@ -6,47 +6,25 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-public class Sun extends Shapes{
-    String namesun = "Sun";
-    int jumlahsun = 0;
+public class Sun extends Shapes implements CustomListener{
     int pointsun = 25;
-    int intervalsun;
-    boolean falling = false ;
+    int intervalsun=0;
     Random acak = new Random();
     String gambarsun = "";
     BufferedImage Png=null;
-    Boolean gone = false;
-    int waktudiam = 0;
-    int bebas = acak.nextInt(720,1080);
     int timer = 0;
-    boolean isfromflower = false;
-    static int totalsun = 0;
-
+    static Sun sun;
+    static int totalsun = 200;
     protected Sun(int X ,int Y){
         super(X,Y);
     }
-
-    public void Start_falling(){
-        falling=true;
-
-
-    }
-    public void Stop_falling(){
-        falling=false;
-    }
-    public void sunpakai(int amount){
-        totalsun -= amount;
+    static void sunpakai(int amount){
+        totalsun =totalsun- amount;
     }
     public void sunnambah(){
         totalsun = totalsun + pointsun;
     }
 
-    public void hapussun(){
-        jumlahsun = 0;
-    }
-    public int gettotalsun(){
-        return totalsun;
-    }
 
     public void Draw(Graphics2D g2) {
         try {
@@ -57,45 +35,18 @@ public class Sun extends Shapes{
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
     
-    public void sunhilang(){
-        gone = true;
-    }
 
+    @Override
     public void actionPerformed() {
-            
-        // if(falling){
-        //     if(timer > 10){
-        //         Y += 2; // Mengubah posisi Y untuk turun
-        //         timer = 0; // Reset timer setelah setiap pergerakan
-        //     }
-        // }
-        // timer++;
+        if(Screen.day){
+            if(timer > intervalsun*60 ){
+            sunnambah(); // Mengubah posisi Y untuk turun
+            timer = 0; // Reset timer setelah setiap pergerakan
+            intervalsun=acak.nextInt(5,11);
+            }
+            timer++;
+        }
         
-        if (isfromflower){
-            waktudiam +=1;
-            if(waktudiam == 300){
-            sunhilang();
-            sunnambah();
-            }
-        }
-        else{
-            if(falling && bebas > 0){
-                if(timer > 10){
-                    Y += 2; // Mengubah posisi Y untuk turun
-                    timer = 0; // Reset timer setelah setiap pergerakan
-                    }
-                    bebas-=1;
-            }
-            else{   
-                waktudiam +=1;
-                if(waktudiam == 300){
-                    sunhilang();
-                    sunnambah();
-                }
-            
-            }
-        }
-        timer++;
     }
 }
 

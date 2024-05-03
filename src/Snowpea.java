@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Snowpea extends Plant {
     String name="snowpea";
-    int cost=175;
+    private int cost=175;
     int Health =100;
     int attack_speed=4;
     int attack_damage=25;
@@ -17,6 +17,7 @@ public class Snowpea extends Plant {
     int time=0;
     BufferedImage Png=null;
     private String picture;
+    boolean firstshoot=true;
     protected Snowpea(int X, int Y) {
         super(X, Y);
         picture="res/Plants/Snow.jpg";
@@ -75,13 +76,23 @@ public class Snowpea extends Plant {
     }
     @Override
     public void actionPerformed() {
-        if(time>60*attack_speed){
-            
+        if(firstshoot){
+            for (Zombie zombie : Screen.zombies) {
+                if(check_Range(zombie)){
+                    shoot();
+                }
+            }
+            firstshoot=false;
+        }else if(time>60*attack_speed){
+            Zombie temp=null;
             for (Zombie zombie : Screen.zombies) {
                 if(check_Range(zombie)){
                     shoot();
                     
                 }
+            }
+            if(temp==null){
+                firstshoot=true;
             }
             time=0 ;
         }else{
@@ -91,5 +102,11 @@ public class Snowpea extends Plant {
     public String getPicture() {
         return picture;
     }
-    
+    public void spawn_Plant(){
+        Snowpea snowpea=new Snowpea(X, Y);
+        Screen.plants.add(snowpea);
+    }
+    public int getCost() {
+        return cost;
+    }
 }
