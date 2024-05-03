@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Zombie extends Square implements CustomListener {
-    String name = "Zombie";
-    int Health =125;
+public class BucketheadZombie extends Zombie {
+    String name = "BucketheadZombie";
+    int Health = 300;
     int attack_damage=100;
     int attack_speed=1;
     boolean is_aquatic=false;
@@ -18,8 +18,9 @@ public class Zombie extends Square implements CustomListener {
     boolean dead=false;
     boolean attack=false;
     Plant target=null;
-    String picture="res/Zombies/NormalZombie.jpg";
+    String picture="res/Zombies/BucketheadZombie.jpeg";
     Boolean is_slowed=false;
+
     public void Attack(Plant plant){
         plant.damage(attack_damage);
     }
@@ -66,7 +67,7 @@ public class Zombie extends Square implements CustomListener {
         }
     }
 
-    protected Zombie(int X, int Y) {
+    protected BucketheadZombie(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
@@ -105,10 +106,7 @@ public class Zombie extends Square implements CustomListener {
             }
         }
         timer++;
-        if(X== 30){
-            System.out.println("lose");
-        }
+
     }
     
-     
 }
