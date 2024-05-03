@@ -6,6 +6,7 @@ public class Gamepanel  {
     static Screen screen = new Screen();
     static JFrame frame;
     static Inventory inventory;
+    static Ticksystem ticksystem;
     public static void Startgame() {
         frame.remove(inventory);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,11 +16,8 @@ public class Gamepanel  {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        Sun sun = new Sun(0, 0);
-        Zombie zombie=new Zombie(10*Screen.tilesize, 1*Screen.tilesize);
-        Spawner.spawn_Zombie(zombie);
-        zombie=new Zombie(10*Screen.tilesize, 2*Screen.tilesize);
-        Spawner.spawn_Zombie(zombie);
+        Sun.sun = new Sun(0, 0);
+        ticksystem.start=true;
     }
     public static void Inventoryscene(){
         frame =new JFrame();
@@ -30,7 +28,7 @@ public class Gamepanel  {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        Ticksystem ticksystem=new Ticksystem();
+        ticksystem=new Ticksystem();
         ticksystem.Startgame();
     }
     public static void up(){
