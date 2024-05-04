@@ -1,5 +1,3 @@
-import java.awt.BorderLayout;
-
 import javax.swing.*;
 
 public class Gamepanel  {
@@ -9,6 +7,7 @@ public class Gamepanel  {
     static Ticksystem ticksystem;
     public static void Startgame() {
         frame.remove(inventory);
+        frame.remove(screen);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
         screen = new Screen();
@@ -23,6 +22,7 @@ public class Gamepanel  {
     }
     public static void Inventoryscene(){
         frame =new JFrame();
+        frame.setTitle("PVZ");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
         inventory = new Inventory();

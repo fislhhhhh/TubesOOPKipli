@@ -1,9 +1,5 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.*;
 import java.util.Iterator;
@@ -159,7 +155,7 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
                             Moveplant=null;
                             deck=null;
                         }
-                        if(plant.getName()=="Lilypad"){//buat hilangin lilypad
+                        if(plant.getName()=="Lilypad"&&(plant.X==planted.X&&plant.Y==planted.Y)){//buat hilangin lilypad
                             lily=true;
                             toRemove=plant;
                         }
