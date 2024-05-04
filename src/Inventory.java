@@ -20,6 +20,8 @@ public class Inventory extends JPanel implements MouseListener{
         Iplant.add(squash);
         Snowpea snowpea=new Snowpea(1, 2);
         Iplant.add(snowpea);
+        Lilypad lilypad=new Lilypad(1, 1);
+        Iplant.add(lilypad);
         int X=1;
         int Y=1; 
         for (Plant plan : Iplant) {

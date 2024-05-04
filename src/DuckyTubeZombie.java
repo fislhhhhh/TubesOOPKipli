@@ -106,7 +106,9 @@ public class DuckyTubeZombie extends Zombie {
             }
         }
         timer++;
-
+        if(X== 30){
+            System.out.println("lose");
+        }
     }
     
 }

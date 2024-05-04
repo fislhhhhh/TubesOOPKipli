@@ -5,20 +5,20 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class lilypad extends Plant  {
-    String name="Lilypad";
-    int cost=100;
+public class Lilypad extends Plant  {
+    private String name="Lilypad";
+    int cost=25;
     int Health =100;
-    int attack_speed=4;
-    int attack_damage=25;
-    int range=-1;
+    int attack_speed=0;
+    int attack_damage=0;
+    int range=0;
     int cooldown=10;
     boolean dead =false;
     boolean is_aquatic = true;
     int time=0;
     BufferedImage Png=null;
-    private String picture="res/lilypad/images.png";
-    protected Plant(int X, int Y) {
+    private String picture="res/Plants/Lilypad.jpg";
+    protected Lilypad(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
@@ -70,9 +70,29 @@ public class lilypad extends Plant  {
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
     @Override
-    public void actionPerformed() {}
+    public void actionPerformed() {
+
+    }
+    public void spawn_Plant(boolean lily){
+        Lilypad lilypad=new Lilypad(X, Y);
+        Screen.plants.add(lilypad);
     }
     public String getPicture() {
         return picture;
     }
-
+    public String getName(){
+        return name;
+    }
+    public int getCost() {
+        return cost;
+    }
+    public int getHealth() {
+        return Health;
+    }
+    public void setHealth(int health) {
+        Health = health;
+    }
+    public boolean getDead(){
+        return dead;
+    }
+}

@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Peashooter extends Plant  {
-    String name="Peashooter";
+    private String name="Peashooter";
     int cost=100;
     int Health =100;
     int attack_speed=4;
@@ -17,7 +17,7 @@ public class Peashooter extends Plant  {
     int time=0;
     BufferedImage Png=null;
     private String picture="res/Plants/images.jpg";
-    protected Plant(int X, int Y) {
+    protected Peashooter(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
@@ -84,5 +84,8 @@ public class Peashooter extends Plant  {
     }
     public String getPicture() {
         return picture;
+    }
+    public String getName(){
+        return name;
     }
 }

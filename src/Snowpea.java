@@ -35,6 +35,7 @@ public class Snowpea extends Plant {
         System.out.println(Health+" plant health" );
         if(Health<=0){
             dead=true;
+            System.out.println(dead);
         }
     }
     public boolean check_Range(Shapes shape){
@@ -102,11 +103,24 @@ public class Snowpea extends Plant {
     public String getPicture() {
         return picture;
     }
-    public void spawn_Plant(){
+    public void spawn_Plant(boolean lily){
         Snowpea snowpea=new Snowpea(X, Y);
+        if(lily){
+            snowpea.setHealth(Health+100);
+            lily=false;
+        }
         Screen.plants.add(snowpea);
     }
     public int getCost() {
         return cost;
+    }
+    public int getHealth() {
+        return Health;
+    }
+    public void setHealth(int health) {
+        Health = health;
+    }
+    public boolean getDead(){
+        return dead;
     }
 }

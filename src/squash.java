@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class Squash extends Plant  {
     String name="Squash";
     private int cost=50;
-    int Health =100;
+    private int Health =100;
     int attack_speed=0;
     int attack_damage=5000;
     int range=1;
@@ -64,7 +64,6 @@ public class Squash extends Plant  {
             return false;
         }
         return false;
-        
     }
     public void Draw(Graphics2D g2) {
         try {
@@ -89,16 +88,26 @@ public class Squash extends Plant  {
         if (hasAttacked) {  
             afterkill();  
         }
+        System.out.println(Health);
     }
     public String getPicture() {
         return picture;
     }
-    public void spawn_Plant(){
+    public void spawn_Plant(boolean lily){
         Squash squash=new Squash(X, Y);
+        if(lily){
+            squash.setHealth(Health+100);
+        }
         Screen.plants.add(squash);
     }
     public int getCost() {
         return cost;
+    }
+    public int getHealth() {
+        return Health;
+    }
+    public void setHealth(int health) {
+        this.Health = health;
     }
 }
     

@@ -17,6 +17,8 @@ public class Gamepanel  {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         Sun.sun = new Sun(0, 0);
+        Zombie zombie=new Zombie(10*60, 3*60);
+        Spawner.spawn_Zombie(zombie);
         ticksystem.start=true;
     }
     public static void Inventoryscene(){
