@@ -5,29 +5,27 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Snowpea extends Plant {
-    String name="snowpea";
-    private int cost=175;
+public class Lilypad extends Plant  {
+    private String name="Lilypad";
+    int cost=25;
     int Health =100;
-    int attack_speed=4;
-    int attack_damage=25;
-    int range=-1;
+    int attack_speed=0;
+    int attack_damage=0;
+    int range=0;
     int cooldown=10;
     boolean dead =false;
+    boolean is_aquatic = true;
     int time=0;
     BufferedImage Png=null;
-    private String picture;
-    boolean firstshoot=true;
-    protected Snowpea(int X, int Y) {
+    private String picture="res/Plants/Lilypad.jpg";
+    protected Lilypad(int X, int Y) {
         super(X, Y);
-        picture="res/Plants/Snow.jpg";
         //TODO Auto-generated constructor stub
     }
 
     public void shoot(){
         Bullet bullet = new Bullet(X, Y,attack_damage);
         Projectile.Project_in(bullet);
-        
     }
 
     public void damage(int amount){
@@ -35,7 +33,6 @@ public class Snowpea extends Plant {
         System.out.println(Health+" plant health" );
         if(Health<=0){
             dead=true;
-            System.out.println(dead);
         }
     }
     public boolean check_Range(Shapes shape){
@@ -64,9 +61,6 @@ public class Snowpea extends Plant {
         return false;
         
     }
-    public void sloweffect(Zombie zombie){
-        zombie.is_slowed = true;
-    }
     public void Draw(Graphics2D g2) {
         try {
             Png = ImageIO.read(new File(picture));
@@ -77,39 +71,17 @@ public class Snowpea extends Plant {
     }
     @Override
     public void actionPerformed() {
-        if(firstshoot){
-            for (Zombie zombie : Screen.zombies) {
-                if(check_Range(zombie)){
-                    shoot();
-                }
-            }
-            firstshoot=false;
-        }else if(time>60*attack_speed){
-            Zombie temp=null;
-            for (Zombie zombie : Screen.zombies) {
-                if(check_Range(zombie)){
-                    shoot();
-                    
-                }
-            }
-            if(temp==null){
-                firstshoot=true;
-            }
-            time=0 ;
-        }else{
-            time++;
-        }
+
+    }
+    public void spawn_Plant(boolean lily){
+        Lilypad lilypad=new Lilypad(X, Y);
+        Screen.plants.add(lilypad);
     }
     public String getPicture() {
         return picture;
     }
-    public void spawn_Plant(boolean lily){
-        Snowpea snowpea=new Snowpea(X, Y);
-        if(lily){
-            snowpea.setHealth(Health+100);
-            lily=false;
-        }
-        Screen.plants.add(snowpea);
+    public String getName(){
+        return name;
     }
     public int getCost() {
         return cost;

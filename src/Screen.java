@@ -97,6 +97,8 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
     Inventorybag Moveplant;
     int dragOffsetX, dragOffsetY;
     Plant planted;
+    Plant toRemove=null;
+    boolean lily=false;
     @Override
     public void mousePressed(MouseEvent e) {
         int mouseX=e.getX();
@@ -141,13 +143,36 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
         if(Moveplant!=null){
             if(planted!=null){
                 if(Moveplant!=null){
-                    for (Plant plant : plants) {
-                        if(plant.X==planted.X&&plant.Y==planted.Y){
+                    Iterator<Plant> plantIterator = Screen.plants.iterator();
+                    while (plantIterator.hasNext()) {
+                        Plant plant = plantIterator.next();
+                        if(plant.getName()!="Lilypad"){
+                            if(plant.X==planted.X&&plant.Y==planted.Y){
+                                Moveplant.picked=true;
+                                dragging=false;
+                                Moveplant=null;
+                                deck=null;
+                            }
+                        }else if((planted.Y>2*tilesize&&planted.Y<5*tilesize)&&!(plant.X==planted.X&&plant.Y==planted.Y)){
                             Moveplant.picked=true;
                             dragging=false;
                             Moveplant=null;
                             deck=null;
                         }
+                        if(plant.getName()=="Lilypad"){//buat hilangin lilypad
+                            lily=true;
+                            toRemove=plant;
+                        }
+                    }
+                    if((planted.getName()!="Lilypad")&&(planted.Y>2*tilesize&&planted.Y<5*tilesize)&&plants.isEmpty()){
+                        Moveplant.picked=true;
+                        dragging=false;
+                        Moveplant=null;
+                        deck=null;
+                    }
+                    if(toRemove!=null){
+                        plants.remove(toRemove);
+                        toRemove=null;
                     }
                     if(Moveplant.plant.getCost()<=Sun.totalsun){
                         if(Moveplant!=null){
@@ -157,7 +182,8 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
                             System.out.println(Moveplant.plant.getCost());
                             Sun.sunpakai(Moveplant.plant.getCost());
                             Moveplant=null;
-                            planted.spawn_Plant();
+                            planted.spawn_Plant(lily);
+                            lily=false;
                             deck=null;
                         }
 
@@ -210,7 +236,7 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
             if(shovel){
                 deck=new Deck(xi, yi, "res/shovel.jpg");
             }else{
-                if(xi>0&&xi<10){
+                if(xi>0 && xi<10){
                     if(yi>0&&yi<7){
                         Plant plant=Moveplant.plant;
                         deck=new Deck(xi, yi, plant.getPicture());
@@ -224,6 +250,23 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
                 }else{
                     deck=null;
                     planted=null;
+                }
+                if(Moveplant.plant.getName()=="Lilypad"){
+                    if(xi>0 && xi<10){
+                        if(yi>2&&yi<5){
+                            Plant plant=Moveplant.plant;
+                            deck=new Deck(xi, yi, plant.getPicture());
+                            plant.X=xi*tilesize;
+                            plant.Y=yi*tilesize;
+                            planted=plant;
+                        }else{
+                            deck=null;
+                            planted=null;
+                        }
+                    }else{
+                        deck=null;
+                        planted=null;
+                    }
                 }
             }
         }

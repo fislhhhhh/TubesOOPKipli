@@ -5,29 +5,40 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Squash extends Plant  {
-    String name="Squash";
-    private int cost=50;
-    private int Health =100;
+public class Doompea extends Plant {
+    String name="Doompea";
+    int cost=425;
+    int Health =100;
     int attack_speed=0;
     int attack_damage=5000;
-    int range=1;
+    int range=-1;
     int cooldown=20;
-    boolean hasAttacked = false;
-    int time=0; 
+    int timebomb=0;
+   
+    int time=0;
+    Boolean hasAttacked = false;
     BufferedImage Png=null;
-    String picture="res/Plants/Squash.jpg";
-    protected Squash(int X, int Y) {
+    private String picture="res/Plants/images.jpg";
+    protected Doompea(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
 
     public void shoot(){
-        Bullet bullet = new Stomp(X, Y,attack_damage);
-        Projectile.Project_in(bullet);
-    }
-
+        
+            for (Zombie zombie : Screen.zombies) {
+                zombie.damage(attack_damage);  
+                zombie.dead = true;  
+            }
+            hasAttacked = true;  
+            afterkill();  
+        }
+        
     
+    public void afterkill(){
+        this.Health = 0;
+        dead = true;
+     }
 
     public void damage(int amount){
         Health=Health-amount;
@@ -35,10 +46,6 @@ public class Squash extends Plant  {
         if(Health<=0){
             dead=true;
         }
-    }
-    public void afterkill(){
-       this.Health = 0;
-       dead = true;
     }
     public boolean check_Range(Shapes shape){
         switch (range) {
@@ -57,13 +64,14 @@ public class Squash extends Plant  {
 
             default:
             if(shape!=null){
-                if(X<shape.getX()&&X+1*Screen.tilesize>shape.getX()&&Y==shape.getY()){
+                if(X<shape.getX()&&X+1*Screen.tilesize>shape.getX()){
                     return true;
                 }
             }
             return false;
         }
         return false;
+        
     }
     public void Draw(Graphics2D g2) {
         try {
@@ -73,42 +81,20 @@ public class Squash extends Plant  {
         }
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
-
     @Override
     public void actionPerformed() {
+        if (timebomb >100){
         if (!hasAttacked) {  
-            for (Zombie zombie : Screen.zombies) {
-                if (check_Range(zombie)) {
-                    shoot();
-                    hasAttacked = true;  
-                    break;  
-                }
-            }
+            shoot();
+            hasAttacked = true;       
         }
-        if (hasAttacked) {  
+        else{
             afterkill();  
         }
-        System.out.println(Health);
+    }
+        timebomb++;        
     }
     public String getPicture() {
         return picture;
     }
-    public void spawn_Plant(boolean lily){
-        Squash squash=new Squash(X, Y);
-        if(lily){
-            squash.setHealth(Health+100);
-        }
-        Screen.plants.add(squash);
-    }
-    public int getCost() {
-        return cost;
-    }
-    public int getHealth() {
-        return Health;
-    }
-    public void setHealth(int health) {
-        this.Health = health;
-    }
 }
-    
-

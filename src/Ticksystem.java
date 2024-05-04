@@ -65,7 +65,7 @@ public class Ticksystem implements Runnable {
             Plant plant = plantIterator.next();
             this.setCustomListener(plant);
             this.doSomething();
-            if (plant.dead) {
+            if (plant.getDead()) {
                 plantIterator.remove(); // Remove the bullet from the list
             }
         }
@@ -76,8 +76,14 @@ public class Ticksystem implements Runnable {
                 int y=random.nextInt(1,11);
                 if(y==3||y==5||y==7){
                     y =random.nextInt(1,7);
-                    Zombie zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
-                    Spawner.spawn_Zombie(zombie);
+                    if((y==3)||(y==4)){
+                        Zombie zombie = new DuckyTubeZombie(10*Screen.tilesize, y*Screen.tilesize);
+                        Spawner.spawn_Zombie(zombie);
+                    }else{
+                        Zombie zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
+                        Spawner.spawn_Zombie(zombie);
+                    }
+
                 }
 
             }
