@@ -17,7 +17,7 @@ public class Jalapeno  extends Plant {
     int time=0;
     Boolean hasAttacked = false;
     BufferedImage Png=null;
-    private String picture="res/Plants/images.jpg";
+    private String picture="res/Plants/jalapeno.png";
     protected Jalapeno(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub

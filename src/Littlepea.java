@@ -17,7 +17,7 @@ public class Littlepea extends Plant  {
     int time=0;
     int membersar = 0;
     BufferedImage Png=null;
-    private String picture="res/Plants/images.jpg";
+    private String picture="res/Plants/littlepea.png";
     protected Littlepea(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub

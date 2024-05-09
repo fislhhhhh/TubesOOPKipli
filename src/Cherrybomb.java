@@ -17,7 +17,7 @@ public class Cherrybomb extends Plant  {
     int time=0;
     boolean hasAttacked = false;
     BufferedImage Png=null;
-    private String picture="res/Plants/images.jpg";
+    private String picture="res/Plants/Cheerybomb.png";
     protected Cherrybomb(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
