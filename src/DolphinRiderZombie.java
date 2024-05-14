@@ -5,10 +5,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class DuckyTubeZombie extends Zombie {
-    String name = "DuckyTubeZombie";
-    int Health = 100;
-    int attack_damage=100;
+public class DolphinRiderZombie extends Zombie {
+    String name = "DolphinRiderZombie";
+    int Health =175;
+    int attack_damage=100000;
     int attack_speed=1;
     boolean is_aquatic=true;
     boolean moving=true;
@@ -18,11 +18,17 @@ public class DuckyTubeZombie extends Zombie {
     boolean dead=false;
     boolean attack=false;
     Plant target=null;
-    String picture="res/Zombies/DuckyTubeZombie.jpeg";
+    String picture="res/Zombies/DolphinRiderZombie.jpeg";
     Boolean is_slowed=false;
+    boolean is_jump = false;
 
     public void Attack(Plant plant){
         plant.damage(attack_damage);
+        if(!is_jump){
+            is_jump = true;
+            attack_damage = 100;
+            X = X-120;
+        }
     }
     public void Start_moving(){
         moving=true;
@@ -67,7 +73,7 @@ public class DuckyTubeZombie extends Zombie {
         }
     }
 
-    protected DuckyTubeZombie(int X, int Y) {
+    protected DolphinRiderZombie(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
@@ -98,6 +104,7 @@ public class DuckyTubeZombie extends Zombie {
                 timer=0;
             }
             }
+
         }else{
             if(timer>60){
                 Attack(target);
@@ -106,9 +113,8 @@ public class DuckyTubeZombie extends Zombie {
             }
         }
         timer++;
-        if(X== 30){
-            System.out.println("lose");
-        }
+        System.out.println(X);
     }
-    
+
+
 }

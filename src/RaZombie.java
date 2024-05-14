@@ -5,21 +5,23 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class DuckyTubeZombie extends Zombie {
-    String name = "DuckyTubeZombie";
+public class RaZombie extends Zombie {
+    String name = "RaZombie";
     int Health = 100;
     int attack_damage=100;
     int attack_speed=1;
-    boolean is_aquatic=true;
+    boolean is_aquatic=false;
     boolean moving=true;
     BufferedImage Png=null;
     boolean plant_in_range=false;
     int timer=0;
+    int  time =0;
     boolean dead=false;
     boolean attack=false;
     Plant target=null;
-    String picture="res/Zombies/DuckyTubeZombie.jpeg";
+    String picture="res/Zombies/RaZombie.jpeg";
     Boolean is_slowed=false;
+    int contain_sun = 0;
 
     public void Attack(Plant plant){
         plant.damage(attack_damage);
@@ -63,11 +65,13 @@ public class DuckyTubeZombie extends Zombie {
         Health=Health-amount;
         System.out.println(Health);
         if(Health<=0){
+            Sun.totalsun += contain_sun;
             dead=true;
+            System.out.println(dead);
         }
     }
 
-    protected DuckyTubeZombie(int X, int Y) {
+    protected RaZombie(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
@@ -105,9 +109,23 @@ public class DuckyTubeZombie extends Zombie {
                 timer=0;
             }
         }
+        if (time >= 600){
+            steal_sun();
+        }
         timer++;
+        time++;
         if(X== 30){
             System.out.println("lose");
+        }
+    }
+
+    public void steal_sun(){
+        if (!dead){
+            if(Sun.totalsun >= 25){
+                Sun.totalsun -= 25;
+                contain_sun += 25;
+                time = 0;
+            }
         }
     }
     

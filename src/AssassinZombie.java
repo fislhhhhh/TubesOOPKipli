@@ -2,24 +2,27 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-public class DuckyTubeZombie extends Zombie {
-    String name = "DuckyTubeZombie";
-    int Health = 100;
+public class AssassinZombie extends Zombie {
+    String name = "AssassinZombie";
+    int Health = 125;
     int attack_damage=100;
-    int attack_speed=1;
+    int attack_speed=2;
     boolean is_aquatic=true;
     boolean moving=true;
     BufferedImage Png=null;
     boolean plant_in_range=false;
     int timer=0;
+    int timerY=0;
     boolean dead=false;
     boolean attack=false;
     Plant target=null;
-    String picture="res/Zombies/DuckyTubeZombie.jpeg";
+    String picture="res/Zombies/AssassinZombie.jpeg";
     Boolean is_slowed=false;
+    Random random=new Random();
 
     public void Attack(Plant plant){
         plant.damage(attack_damage);
@@ -67,7 +70,7 @@ public class DuckyTubeZombie extends Zombie {
         }
     }
 
-    protected DuckyTubeZombie(int X, int Y) {
+    protected AssassinZombie(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
@@ -86,9 +89,13 @@ public class DuckyTubeZombie extends Zombie {
         if(moving){
             if(is_slowed){
                 if (timer > 10){
-                    X-=1;
+                    X-=1; 
                     Plant_In_Range();
                     timer = 0;
+                    if (timerY>120){
+                        Y = random.nextInt(1,7) *Screen.tilesize;
+                        timerY = 0;
+                    }
                 }
             }
             else{
@@ -96,6 +103,10 @@ public class DuckyTubeZombie extends Zombie {
                 X-=1;
                 Plant_In_Range();
                 timer=0;
+                if (timerY>120){
+                    Y = random.nextInt(1,7) *Screen.tilesize;
+                    timerY = 0;
+                }
             }
             }
         }else{
@@ -106,9 +117,8 @@ public class DuckyTubeZombie extends Zombie {
             }
         }
         timer++;
-        if(X== 30){
-            System.out.println("lose");
-        }
+        timerY++;
+
     }
     
 }

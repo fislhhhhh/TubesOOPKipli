@@ -5,12 +5,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class DuckyTubeZombie extends Zombie {
-    String name = "DuckyTubeZombie";
+public class ScreenDoorZombie extends Zombie {
+    String name = "ScreenDoorZombie";
     int Health = 100;
     int attack_damage=100;
     int attack_speed=1;
-    boolean is_aquatic=true;
+    boolean is_aquatic=false;
     boolean moving=true;
     BufferedImage Png=null;
     boolean plant_in_range=false;
@@ -18,7 +18,7 @@ public class DuckyTubeZombie extends Zombie {
     boolean dead=false;
     boolean attack=false;
     Plant target=null;
-    String picture="res/Zombies/DuckyTubeZombie.jpeg";
+    String picture="res/Zombies/ScreenDoorZombie.jpeg";
     Boolean is_slowed=false;
 
     public void Attack(Plant plant){
@@ -67,7 +67,7 @@ public class DuckyTubeZombie extends Zombie {
         }
     }
 
-    protected DuckyTubeZombie(int X, int Y) {
+    protected ScreenDoorZombie(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
@@ -85,11 +85,6 @@ public class DuckyTubeZombie extends Zombie {
     public void actionPerformed() {
         if(moving){
             if(is_slowed){
-                if (timer > 10){
-                    X-=1;
-                    Plant_In_Range();
-                    timer = 0;
-                }
             }
             else{
             if(timer>5){

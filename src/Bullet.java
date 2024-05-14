@@ -30,6 +30,7 @@ public class Bullet extends Square implements CustomListener{
         damage=0;
         hit=true;
     }
+    
     public boolean check_hit(Shapes shape){
         if(Y==shape.Y){
             if(X<shape.getX()&&X+1*Screen.tilesize/2>shape.getX()){
