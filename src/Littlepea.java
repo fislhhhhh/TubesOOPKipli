@@ -5,40 +5,28 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Doompea extends Plant {
-    String name="Doompea";
-    int cost=425;
-    int Health =100;
-    int attack_speed=0;
-    int attack_damage=5000;
+public class Littlepea extends Plant  {
+    private String name="Peashooter";
+    int cost=25;
+    int Health =50;
+    int attack_speed=4;
+    int attack_damage=10;
     int range=-1;
-    int cooldown=20;
-    int timebomb=0;
-   
+    int cooldown=15;
+    boolean dead =false;
     int time=0;
-    Boolean hasAttacked = false;
+    int membersar = 0;
     BufferedImage Png=null;
-    private String picture="res/Plants/doom.png";
-    protected Doompea(int X, int Y) {
+    private String picture="res/Plants/littlepea.png";
+    protected Littlepea(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub
     }
 
     public void shoot(){
-        
-            for (Zombie zombie : Screen.zombies) {
-                zombie.damage(attack_damage);  
-                zombie.dead = true;  
-            }
-            hasAttacked = true;  
-            afterkill();  
-        }
-        
-    
-    public void afterkill(){
-        this.Health = 0;
-        dead = true;
-     }
+        Bullet bullet = new Bullet(X, Y,attack_damage);
+        Projectile.Project_in(bullet);
+    }
 
     public void damage(int amount){
         Health=Health-amount;
@@ -83,18 +71,27 @@ public class Doompea extends Plant {
     }
     @Override
     public void actionPerformed() {
-        if (timebomb >100){
-        if (!hasAttacked) {  
-            shoot();
-            hasAttacked = true;       
+        if(time>60*attack_speed){
+            
+            for (Zombie zombie : Screen.zombies) {
+                if(check_Range(zombie)){
+                    shoot();
+                    membersar++;
+                    if (membersar > 15){
+                        attack_damage=attack_damage+2; 
+                        membersar = 0;
+                    }
+                }
+            }
+            time=0 ;
+        }else{
+            time++;
         }
-        else{
-            afterkill();  
-        }
-    }
-        timebomb++;        
     }
     public String getPicture() {
         return picture;
+    }
+    public String getName(){
+        return name;
     }
 }
