@@ -56,8 +56,9 @@ public class Ticksystem implements Runnable {
             Zombie zombie = zombieIterator.next();
             this.setCustomListener(zombie);
             this.doSomething();
-            if (zombie.dead) {
-                zombieIterator.remove(); // Remove the bullet from the list
+            if (zombie.getDead()) {
+                System.out.println(zombie.getName());
+                zombieIterator.remove(); // Remove the Zombie from the list
             }
         }
         Iterator<Plant> plantIterator = Screen.plants.iterator();
@@ -66,12 +67,12 @@ public class Ticksystem implements Runnable {
             this.setCustomListener(plant);
             this.doSomething();
             if (plant.getDead()) {
-                plantIterator.remove(); // Remove the bullet from the list
+                plantIterator.remove(); // Remove the Plant from the list
             }
         }
         if(timer>60&&time<=200&&start){
             time++;
-            if(time>=20&&time<=160){
+            if(time>=20&&time<=160 && Screen.zombies.size()<10){
                 Random random =new Random();
                 int y=random.nextInt(1,11);
                 if(y==3||y==5||y==7){

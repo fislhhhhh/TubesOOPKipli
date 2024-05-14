@@ -14,7 +14,7 @@ public class Sun extends Shapes implements CustomListener{
     BufferedImage Png=null;
     int timer = 0;
     static Sun sun;
-    static int totalsun = 200;
+    static int totalsun = 20000000;
     protected Sun(int X ,int Y){
         super(X,Y);
     }

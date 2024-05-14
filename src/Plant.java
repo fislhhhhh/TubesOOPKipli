@@ -6,17 +6,17 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Plant extends Shapes implements CustomListener  {
-    String name="Plant";
-    private int cost=50;
-    private int Health =100;
-    int attack_speed=4;
-    int attack_damage=25;
-    int range=-1;
-    int cooldown=10;
-    boolean dead =false;
-    int time=0;
-    BufferedImage Png=null;
-    private String picture="res/Plants/images.jpg";
+    protected String name="Plant";
+    protected int cost=50;
+    protected int Health =100;
+    protected int attack_speed=4;
+    protected int attack_damage=25;
+    protected int range=-1;
+    protected int cooldown=10;
+    protected boolean dead =false;
+    protected int time=0;
+    protected BufferedImage Png=null;
+    protected String picture="res/Plants/images.jpg";
     protected Plant(int X, int Y) {
         super(X, Y);
         //TODO Auto-generated constructor stub

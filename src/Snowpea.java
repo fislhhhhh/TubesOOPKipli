@@ -1,33 +1,28 @@
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 public class Snowpea extends Plant {
-    String name="snowpea";
-    private int cost=175;
-    int Health =100;
-    int attack_speed=4;
-    int attack_damage=25;
-    int range=-1;
-    int cooldown=10;
-    boolean dead =false;
-    int time=0;
-    BufferedImage Png=null;
-    private String picture;
+
     boolean firstshoot=true;
     protected Snowpea(int X, int Y) {
         super(X, Y);
+        
+        name="snowpea";
+        cost=175;
+        Health =100;
+        attack_speed=4;
+        attack_damage=25;
+        range=-1;
+        cooldown=10;
         picture="res/Plants/Snow.jpg";
-        //TODO Auto-generated constructor stub
     }
 
     public void shoot(){
-        Bullet bullet = new Bullet(X, Y,attack_damage);
+        Slowbullet bullet = new Slowbullet(X, Y,attack_damage);
         Projectile.Project_in(bullet);
-        
     }
 
     public void damage(int amount){
@@ -64,9 +59,6 @@ public class Snowpea extends Plant {
         return false;
         
     }
-    public void sloweffect(Zombie zombie){
-        zombie.is_slowed = true;
-    }
     public void Draw(Graphics2D g2) {
         try {
             Png = ImageIO.read(new File(picture));
@@ -77,19 +69,23 @@ public class Snowpea extends Plant {
     }
     @Override
     public void actionPerformed() {
+        boolean shootable=true;
         if(firstshoot){
             for (Zombie zombie : Screen.zombies) {
-                if(check_Range(zombie)){
+                if(check_Range(zombie)&&shootable){
                     shoot();
+                    shootable=false;
                 }
             }
             firstshoot=false;
+            time=0 ;
         }else if(time>60*attack_speed){
             Zombie temp=null;
             for (Zombie zombie : Screen.zombies) {
-                if(check_Range(zombie)){
+                if(check_Range(zombie)&&shootable){
                     shoot();
-                    
+                    shootable=false;
+                    temp=zombie;
                 }
             }
             if(temp==null){
@@ -100,9 +96,6 @@ public class Snowpea extends Plant {
             time++;
         }
     }
-    public String getPicture() {
-        return picture;
-    }
     public void spawn_Plant(boolean lily){
         Snowpea snowpea=new Snowpea(X, Y);
         if(lily){
@@ -110,17 +103,5 @@ public class Snowpea extends Plant {
             lily=false;
         }
         Screen.plants.add(snowpea);
-    }
-    public int getCost() {
-        return cost;
-    }
-    public int getHealth() {
-        return Health;
-    }
-    public void setHealth(int health) {
-        Health = health;
-    }
-    public boolean getDead(){
-        return dead;
     }
 }

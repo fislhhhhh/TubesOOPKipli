@@ -1,13 +1,13 @@
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
 public class Slowbullet extends Bullet {
-    int time=0;
-    int damage=0;
     private BufferedImage Png;
-    Boolean hit=false;
+
     protected Slowbullet(int X, int Y, int damage) {
         super(X, Y,damage);
         //TODO Auto-generated constructor stub
@@ -17,9 +17,18 @@ public class Slowbullet extends Bullet {
     public void hit(Zombie zombie){
         super.hit(zombie);
         zombie.is_slowed = true;
-    
+        zombie.slowtime=0;
+        damage=0;
+        hit=true;
     }
-
+    public void Draw(Graphics2D g2) {
+        try {
+            Png = ImageIO.read(new File("res/slowbullet.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
+    }
     
     public void actionPerformed() {
         X+=2;

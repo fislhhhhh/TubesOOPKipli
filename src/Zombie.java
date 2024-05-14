@@ -15,11 +15,12 @@ public class Zombie extends Square implements CustomListener {
     BufferedImage Png=null;
     boolean plant_in_range=false;
     int timer=0;
-    boolean dead=false;
+    protected boolean dead=false;
     boolean attack=false;
     Plant target=null;
     String picture="res/Zombies/NormalZombie.jpg";
     Boolean is_slowed=false;
+    int slowtime=0;
     public void Attack(Plant plant){
         plant.damage(attack_damage);
     }
@@ -83,7 +84,7 @@ public class Zombie extends Square implements CustomListener {
     @Override
     public void actionPerformed() {
         if(moving){
-            if(is_slowed){
+            if(is_slowed&&slowtime<180){
                 if (timer > 10){
                     X-=1;
                     Plant_In_Range();
@@ -105,10 +106,13 @@ public class Zombie extends Square implements CustomListener {
             }
         }
         timer++;
+        slowtime++;
         if(X== 30){
             System.out.println("lose");
         }
     }
-    
+    public boolean getDead(){
+        return dead;
+    }
      
 }

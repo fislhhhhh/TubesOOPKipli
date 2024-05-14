@@ -1,34 +1,44 @@
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 public class Wallnut extends Plant {
-    String name="wallnut";
-    int cost=50;
-    int Health =1000;
-    int attack_speed=0;
-    int attack_damage=0;
-    int range=0;
-    int cooldown=0;
-    boolean dead =false;
-    int time=0;
-    BufferedImage Png=null;
-    String picture="res/Plants/images.jpg";
+
     public Wallnut(int X, int Y) {
         super(X, Y);
-        //TODO Auto-generated constructor stub
+        name="wallnut";
+        cost=50;
+        Health =1000;
+        attack_speed=0;
+        attack_damage=0;
+        range=0;
+        cooldown=20;
+        picture="res/Plants/wallnut.jpg";
     }
 
-    
     public void shoot(){
-        
+
+    }
+    public void Draw(Graphics2D g2) {
+        try {
+            Png = ImageIO.read(new File(picture));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
 
     
     @Override
     public void actionPerformed() {
+    }
+    public void spawn_Plant(boolean lily){
+        Wallnut wallnut=new Wallnut(X, Y);
+        if(lily){
+            wallnut.setHealth(Health+100);
+        }
+        Screen.plants.add(wallnut);
     }
 }

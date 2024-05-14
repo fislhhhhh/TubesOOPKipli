@@ -15,7 +15,6 @@ public class DuckyTubeZombie extends Zombie {
     BufferedImage Png=null;
     boolean plant_in_range=false;
     int timer=0;
-    boolean dead=false;
     boolean attack=false;
     Plant target=null;
     String picture="res/Zombies/DuckyTubeZombie.jpeg";
@@ -64,6 +63,7 @@ public class DuckyTubeZombie extends Zombie {
         System.out.println(Health);
         if(Health<=0){
             dead=true;
+            System.out.println(dead+" test");
         }
     }
 

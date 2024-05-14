@@ -1,25 +1,21 @@
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 public class Squash extends Plant  {
-    String name="Squash";
-    private int cost=50;
-    private int Health =100;
-    int attack_speed=0;
-    int attack_damage=5000;
-    int range=1;
-    int cooldown=20;
     boolean hasAttacked = false;
-    int time=0; 
-    BufferedImage Png=null;
-    String picture="res/Plants/Squash.jpg";
     protected Squash(int X, int Y) {
         super(X, Y);
-        //TODO Auto-generated constructor stub
+        name="Squash";
+        cost=50;
+        Health =100;
+        attack_speed=0;
+        attack_damage=5000;
+        range=1;
+        cooldown=20;
+        picture="res/Plants/Squash.jpg";
     }
 
     public void shoot(){
@@ -88,10 +84,6 @@ public class Squash extends Plant  {
         if (hasAttacked) {  
             afterkill();  
         }
-        System.out.println(Health);
-    }
-    public String getPicture() {
-        return picture;
     }
     public void spawn_Plant(boolean lily){
         Squash squash=new Squash(X, Y);
@@ -99,15 +91,6 @@ public class Squash extends Plant  {
             squash.setHealth(Health+100);
         }
         Screen.plants.add(squash);
-    }
-    public int getCost() {
-        return cost;
-    }
-    public int getHealth() {
-        return Health;
-    }
-    public void setHealth(int health) {
-        this.Health = health;
     }
 }
     

@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 public class Bullet extends Square implements CustomListener{
     int time=0;
@@ -26,7 +25,6 @@ public class Bullet extends Square implements CustomListener{
     
     public void hit(Zombie zombie){
         zombie.damage(damage);
-        System.out.println(damage);
         damage=0;
         hit=true;
     }

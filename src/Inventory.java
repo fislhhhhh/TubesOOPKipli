@@ -22,6 +22,14 @@ public class Inventory extends JPanel implements MouseListener{
         Iplant.add(snowpea);
         Lilypad lilypad=new Lilypad(1, 1);
         Iplant.add(lilypad);
+        Peashooter peashooter=new Peashooter(1, 1);
+        Iplant.add(peashooter);
+        Sunflower sunflower=new Sunflower(1, 1);
+        Iplant.add(sunflower);
+        Wallnut wallnut=new Wallnut(1,1);
+        Iplant.add(wallnut);
+        Jalapeno jalapeno = new Jalapeno(1, 1);
+        Iplant.add(jalapeno);
         int X=1;
         int Y=1; 
         for (Plant plan : Iplant) {
@@ -30,7 +38,7 @@ public class Inventory extends JPanel implements MouseListener{
                 bag.add(inventorybag);
                 X++;
             }else{
-                X=0;
+                X=1;
                 Y++;
                 Inventorybag inventorybag= new Inventorybag(X, Y, plan);
                 bag.add(inventorybag);
@@ -45,7 +53,7 @@ public class Inventory extends JPanel implements MouseListener{
         
         super.paintComponent(g);
         Graphics2D g2=(Graphics2D) g;
-        button=new Button(7*60, 0*60);
+        button=new Button(7*60, 0*60,Color.BLUE);
         for (int i = 0; i < 6; i++) {
             new Deck((i+1), 0,"res/Deck.png").Draw(g2);
         }
@@ -69,6 +77,7 @@ public class Inventory extends JPanel implements MouseListener{
             }
         }
         button.Draw(g2);
+        g2.dispose();
     }
 
     @Override
@@ -110,7 +119,7 @@ public class Inventory extends JPanel implements MouseListener{
 
         }else{
             if (mouseX >= x && mouseX <= (x+width) &&
-            mouseY >= y && mouseY <= (y + height)) {
+            mouseY >= y && mouseY <= (y + height)&&decks.size()==6) {
                 Gamepanel.Startgame();
             }
             Iterator<Inventorybag> bagInterator = bag.iterator();

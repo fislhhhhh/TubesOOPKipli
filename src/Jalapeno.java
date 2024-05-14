@@ -6,29 +6,26 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Jalapeno  extends Plant {
-    String name="Jalapeno";
-    int cost=150;
-    int Health =100;
-    int attack_speed=0;
-    int attack_damage=5000;
-    int range=-1;
-    int cooldown=20;
-   
-    int time=0;
+
     Boolean hasAttacked = false;
-    BufferedImage Png=null;
-    private String picture="res/Plants/images.jpg";
     protected Jalapeno(int X, int Y) {
         super(X, Y);
-        //TODO Auto-generated constructor stub
+        name="Jalapeno";
+        cost=150;
+        Health =100;
+        attack_speed=0;
+        attack_damage=5000;
+        range=-1;
+        cooldown=20;
+        picture="res/Plants/jalapeno.jpg";
     }
 
     public void shoot(){
-        Bullet bullet = new Burn(X, Y,attack_damage);
-        Projectile.Project_in(bullet);
             for (Zombie zombie : Screen.zombies) {
-                if (zombie.getY() == this.Y) {  // Check if the zombie is in the same lane
-                    zombie.damage(attack_damage);  // Apply damage
+                System.out.println(Y+" test");
+                System.out.println(zombie.getY()+" ztest");
+                if (zombie.getY() == Y) {  // Check if the zombie is in the same lane
+
                     zombie.dead = true;  // Optionally set zombies as dead if damage is fatal
                 }
             }
@@ -43,11 +40,7 @@ public class Jalapeno  extends Plant {
      }
 
     public void damage(int amount){
-        Health=Health-amount;
-        System.out.println(Health+" plant health" );
-        if(Health<=0){
-            dead=true;
-        }
+
     }
     public boolean check_Range(Shapes shape){
         switch (range) {
@@ -84,16 +77,15 @@ public class Jalapeno  extends Plant {
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
     @Override
-    public void actionPerformed() {
-        if (!hasAttacked) {  
-            shoot();
-            hasAttacked = true;       
-        }
-        else{
-            afterkill();  
-        }
+    public void actionPerformed() { 
+        shoot();
     }
-    public String getPicture() {
-        return picture;
+    public void spawn_Plant(boolean lily) {
+        Jalapeno jalapeno=new Jalapeno(X, Y);
+        if(lily){
+            jalapeno.setHealth(Health+100);
+        }
+        Screen.plants.add(jalapeno);
+
     }
 }

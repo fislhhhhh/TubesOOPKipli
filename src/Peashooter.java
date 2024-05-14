@@ -1,27 +1,53 @@
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 public class Peashooter extends Plant  {
-    private String name="Peashooter";
-    int cost=100;
-    int Health =100;
-    int attack_speed=4;
-    int attack_damage=25;
-    int range=-1;
-    int cooldown=10;
-    boolean dead =false;
-    int time=0;
-    BufferedImage Png=null;
-    private String picture="res/Plants/images.jpg";
+    private boolean firstshoot=true;
+
     protected Peashooter(int X, int Y) {
         super(X, Y);
-        //TODO Auto-generated constructor stub
+        name="Peashooter";
+        cost=100;
+        Health =100;
+        attack_speed=4;
+        attack_damage=25;
+        range=-1;
+        cooldown=10;
+        picture="res/Plants/images.jpg";
     }
 
+    @Override
+    public void actionPerformed() {
+        boolean shootable=true;
+        if(firstshoot){
+            for (Zombie zombie : Screen.zombies) {
+                if(check_Range(zombie)&&shootable){
+                    shoot();
+                    shootable=false;
+                    System.out.println("test");
+                }
+            }
+            firstshoot=false;
+            time=0 ;
+        }else if(time>60*attack_speed){
+            Zombie temp=null;
+            for (Zombie zombie : Screen.zombies) {
+                if(check_Range(zombie)&&shootable){
+                    shoot();
+                    shootable=false;
+                    temp=zombie;
+                    System.out.println("test2");
+                }
+            }
+            if(temp==null){
+                firstshoot=true;
+            }
+            time=0 ;
+        }else{
+            time++;
+        }
+    }
     public void shoot(){
         Bullet bullet = new Bullet(X, Y,attack_damage);
         Projectile.Project_in(bullet);
@@ -39,7 +65,7 @@ public class Peashooter extends Plant  {
             case -1:
             if(shape!=null){
                 if(Y==shape.getY()){
-                    System.out.println("case -1");
+                    System.out.println("case -1dd");
                     return true;
                 }
             }
@@ -68,24 +94,11 @@ public class Peashooter extends Plant  {
         }
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
-    @Override
-    public void actionPerformed() {
-        if(time>60*attack_speed){
-            
-            for (Zombie zombie : Screen.zombies) {
-                if(check_Range(zombie)){
-                    shoot();
-                }
-            }
-            time=0 ;
-        }else{
-            time++;
+    public void spawn_Plant(boolean lily){
+        Peashooter peashooter=new Peashooter(X, Y);
+        if(lily){
+            peashooter.setHealth(Health+100);
         }
-    }
-    public String getPicture() {
-        return picture;
-    }
-    public String getName(){
-        return name;
+        Screen.plants.add(peashooter);
     }
 }

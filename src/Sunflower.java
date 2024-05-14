@@ -1,38 +1,23 @@
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Timer;
 
 import javax.imageio.ImageIO;
 
 public class Sunflower extends Plant   {
-    String name="Sunflower";
-    int cost=50;
-    int Health =100;
-    int attack_speed=0;
-    int attack_damage=0;
-    int range=0;
-    int cooldown=10;
-    boolean dead =false;
-    BufferedImage Png=null;
-
-    private String picture="res/Plants/Sunflowerremove.png";
     private int timer=0;
-    private int xsun;
-    private int ysun;
     protected Sunflower(int X, int Y) {
         super(X, Y);
-        this.xsun = X;
-        this.ysun = Y;
-        
-        
-        //TODO Auto-generated constructor stub
+        name="Sunflower";
+        cost=50;
+        Health =100;
+        attack_speed=0;
+        attack_damage=0;
+        range=0;
+        cooldown=10;
+        picture="res/Plants/Sunflowerremove.png";
     }
 
-    public void makesun(){
-        Sun matahari = new Sun(xsun, ysun);
-    }
 
     public void damage(int amount){
         Health=Health-amount;
@@ -42,30 +27,7 @@ public class Sunflower extends Plant   {
         }
     }
     public boolean check_Range(Shapes shape){
-        switch (range) {
-            case -1:
-            if(shape!=null){
-                if(Y==shape.getY()){
-                    System.out.println("case -1");
-                    return true;
-                }
-            }
-            break;
-
-            case 0:
-            System.out.println("case 0");
-            return true;
-
-            default:
-            if(shape!=null){
-                if(X<shape.getX()&&X+1*Screen.tilesize>shape.getX()){
-                    return true;
-                }
-            }
-            return false;
-        }
-        return false;
-        
+        return true;
     }
     public void Draw(Graphics2D g2) {
         try {
@@ -77,10 +39,17 @@ public class Sunflower extends Plant   {
     }
     @Override
     public void actionPerformed() {
-        if(timer > 6){
-            makesun();
-            timer = 0; 
-            }
-            timer= timer +1;
+        if(timer > 180){
+            Sun.totalsun+=25;
+            timer=0;
         }  
+        timer++;
+    }
+    public void spawn_Plant(boolean lily){
+        Sunflower sunflower=new Sunflower(X, Y);
+        if(lily){
+            sunflower.setHealth(Health+100);
+        }
+        Screen.plants.add(sunflower);
+    }
 }

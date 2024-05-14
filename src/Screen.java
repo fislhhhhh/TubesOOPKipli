@@ -94,8 +94,8 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
     int dragOffsetX, dragOffsetY;
     Plant planted;
     Plant toRemove=null;
-    boolean lily=false;
     @Override
+
     public void mousePressed(MouseEvent e) {
         int mouseX=e.getX();
         int mouseY=e.getY();
@@ -136,29 +136,43 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
     }
     @Override
     public void mouseReleased(MouseEvent e) {
+        boolean lily=false;
+        boolean noLily=false;
         if(Moveplant!=null){
             if(planted!=null){
                 if(Moveplant!=null){
                     Iterator<Plant> plantIterator = Screen.plants.iterator();
                     while (plantIterator.hasNext()) {
                         Plant plant = plantIterator.next();
-                        if(plant.getName()!="Lilypad"){
+                        System.out.println((planted.Y>2*tilesize&&planted.Y<5*tilesize)+"1");
+                        System.out.println((!(plant.X==planted.X&&plant.Y==planted.Y))+"2");
+                        System.out.println((planted.getName()!="Lilypad")+"3");
+                        System.out.println((!lily)+"4");
+                        System.out.println(noLily+"5");
+                        if((plant.getName()!="Lilypad")&&!(planted.Y>2*tilesize&&planted.Y<5*tilesize)){
+                            System.out.println("6");
                             if(plant.X==planted.X&&plant.Y==planted.Y){
                                 Moveplant.picked=true;
                                 dragging=false;
                                 Moveplant=null;
                                 deck=null;
                             }
-                        }else if((planted.Y>2*tilesize&&planted.Y<5*tilesize)&&!(plant.X==planted.X&&plant.Y==planted.Y)){
-                            Moveplant.picked=true;
-                            dragging=false;
-                            Moveplant=null;
-                            deck=null;
+                        }else if((planted.Y>2*tilesize&&planted.Y<5*tilesize)&&(!(plant.X==planted.X&&plant.Y==planted.Y))&&(planted.getName()!="Lilypad")&&(!lily)){
+                            System.out.println(planted.Y/60+"333");
+                            noLily=true;
                         }
                         if(plant.getName()=="Lilypad"&&(plant.X==planted.X&&plant.Y==planted.Y)){//buat hilangin lilypad
                             lily=true;
                             toRemove=plant;
                         }
+                    }
+                    System.out.println(noLily+""+lily);
+                    if(noLily&&!lily){
+                        Moveplant.picked=true;
+                        dragging=false;
+                        Moveplant=null;
+                        deck=null;
+                        System.out.println("testjjj");
                     }
                     if((planted.getName()!="Lilypad")&&(planted.Y>2*tilesize&&planted.Y<5*tilesize)&&plants.isEmpty()){
                         Moveplant.picked=true;
