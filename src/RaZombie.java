@@ -4,19 +4,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class PoleVaultingZombie extends Zombie {
-
-    boolean is_jump = false;
+public class RaZombie extends Zombie {
+    int contain_sun = 0;
+    int  time =0;
 
     public void Attack(Plant plant){
         plant.damage(attack_damage);
-        if(!is_jump){
-            is_jump = true;
-            attack_damage = 100;
-            X = X-120;
-        }
-    }
 
+    }
 
     public void Plant_In_Range(){
         Start_moving();
@@ -46,15 +41,23 @@ public class PoleVaultingZombie extends Zombie {
         return false;
     }
 
+    public void damage(int amount){
+        Health=Health-amount;
+        System.out.println(Health);
+        if(Health<=0){
+            Sun.totalsun += contain_sun;
+            dead=true;
+        }
+    }
 
-    protected PoleVaultingZombie(int X, int Y) {
+    protected RaZombie(int X, int Y) {
         super(X, Y);
-        name = "PoleVaultingZombie";
-        Health =175;
-        attack_damage=100000;
+        name = "RaZombie";
+        Health = 100;
+        attack_damage=100;
         attack_speed=1;
         is_aquatic=false;
-        picture="res/Zombies/PoleVaultingZombie.jpeg";
+        picture="res/Zombies/razombie.jpg";
     }
 
     public void Draw(Graphics2D g2) {
@@ -83,7 +86,6 @@ public class PoleVaultingZombie extends Zombie {
                 timer=0;
             }
             }
-
         }else{
             if(timer>60){
                 Attack(target);
@@ -91,9 +93,24 @@ public class PoleVaultingZombie extends Zombie {
                 timer=0;
             }
         }
+        if (time >= 600){
+            steal_sun();
+        }
         timer++;
-        System.out.println(X);
+        time++;
+        if(X== 30){
+            System.out.println("lose");
+        }
     }
 
-
+    public void steal_sun(){
+        if (!dead){
+            if(Sun.totalsun >= 25){
+                Sun.totalsun -= 25;
+                contain_sun += 25;
+                time = 0;
+            }
+        }
+    }
+    
 }

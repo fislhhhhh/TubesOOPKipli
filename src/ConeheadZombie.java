@@ -6,29 +6,20 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class ConeheadZombie extends Zombie {
-    String name = "ConeheadZombie";
-    int Health =250;
-    int attack_damage=100;
-    int attack_speed=1;
-    boolean is_aquatic=false;
-    boolean moving=true;
-    BufferedImage Png=null;
-    boolean plant_in_range=false;
-    int timer=0;
-    boolean dead=false;
-    boolean attack=false;
-    Plant target=null;
-    String picture="res/Zombies/ConeheadZombie.jpeg";
-    Boolean is_slowed=false;
+    protected ConeheadZombie(int X, int Y) {
+        super(X, Y);
+        name = "ConeheadZombie";
+        Health =250;
+        attack_damage=100;
+        attack_speed=1;
+        is_aquatic=false;
+        moving=true;
+        picture="res/Zombies/ConeheadZombie.jpeg";
+    }
+
 
     public void Attack(Plant plant){
         plant.damage(attack_damage);
-    }
-    public void Start_moving(){
-        moving=true;
-    }
-    public void Stop_moving(){
-        moving=false;
     }
 
     public void Plant_In_Range(){
@@ -59,18 +50,7 @@ public class ConeheadZombie extends Zombie {
         return false;
     }
 
-    public void damage(int amount){
-        Health=Health-amount;
-        System.out.println(Health);
-        if(Health<=0){
-            dead=true;
-        }
-    }
 
-    protected ConeheadZombie(int X, int Y) {
-        super(X, Y);
-        //TODO Auto-generated constructor stub
-    }
 
     public void Draw(Graphics2D g2) {
         try {
@@ -81,32 +61,5 @@ public class ConeheadZombie extends Zombie {
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
 
-    @Override
-    public void actionPerformed() {
-        if(moving){
-            if(is_slowed){
-                if (timer > 10){
-                    X-=1;
-                    Plant_In_Range();
-                    timer = 0;
-                }
-            }
-            else{
-            if(timer>5){
-                X-=1;
-                Plant_In_Range();
-                timer=0;
-            }
-            }
-        }else{
-            if(timer>60){
-                Attack(target);
-                Plant_In_Range();
-                timer=0;
-            }
-        }
-        timer++;
-
-    }
     
 }

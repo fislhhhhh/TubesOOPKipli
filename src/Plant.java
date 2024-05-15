@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Plant extends Shapes implements CustomListener  {
+public abstract class Plant extends Shapes implements CustomListener  {
     protected String name="Plant";
     protected int cost=50;
     protected int Health =100;
@@ -23,8 +23,7 @@ public class Plant extends Shapes implements CustomListener  {
     }
 
     public void shoot(){
-        Bullet bullet = new Bullet(X, Y,attack_damage);
-        Projectile.Project_in(bullet);
+        
     }
 
     public void damage(int amount){

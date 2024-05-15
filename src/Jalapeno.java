@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 
 public class Jalapeno  extends Plant {
 
-    Boolean hasAttacked = false;
     protected Jalapeno(int X, int Y) {
         super(X, Y);
         name="Jalapeno";
@@ -22,14 +21,11 @@ public class Jalapeno  extends Plant {
 
     public void shoot(){
             for (Zombie zombie : Screen.zombies) {
-                System.out.println(Y+" test");
-                System.out.println(zombie.getY()+" ztest");
                 if (zombie.getY() == Y) {  // Check if the zombie is in the same lane
 
-                    zombie.dead = true;  // Optionally set zombies as dead if damage is fatal
+                    zombie.setdead(true);  // Optionally set zombies as dead if damage is fatal
                 }
             }
-            hasAttacked = true;  // Mark as attacked to prevent further attacks
             afterkill();  // Call afterkill to handle cleanup of Jalapeno itself
         }
         

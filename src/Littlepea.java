@@ -1,26 +1,22 @@
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 public class Littlepea extends Plant  {
-    private String name="Peashooter";
-    int cost=25;
-    int Health =50;
-    int attack_speed=4;
-    int attack_damage=10;
-    int range=-1;
-    int cooldown=15;
-    boolean dead =false;
-    int time=0;
-    int membersar = 0;
-    BufferedImage Png=null;
-    private String picture="res/Plants/littlepea.png";
+    private boolean firstshoot=true;
+    private int membersar = 0;
     protected Littlepea(int X, int Y) {
         super(X, Y);
-        //TODO Auto-generated constructor stub
+        name="Littlepea";
+        cost=25;
+        Health =50;
+        attack_speed=4;
+        attack_damage=10;
+        range=-1;
+        cooldown=15;
+        picture="res/Plants/littlepea.png";
     }
 
     public void shoot(){
@@ -71,11 +67,28 @@ public class Littlepea extends Plant  {
     }
     @Override
     public void actionPerformed() {
-        if(time>60*attack_speed){
-            
+        boolean shootable=true;
+        if(firstshoot){
             for (Zombie zombie : Screen.zombies) {
-                if(check_Range(zombie)){
+                if(check_Range(zombie)&&shootable){
                     shoot();
+                    membersar++;
+                    if (membersar > 15){
+                        attack_damage=attack_damage+2; 
+                        membersar = 0;
+                    }
+                    shootable=false;
+                }
+            }
+            firstshoot=false;
+            time=0 ;
+        }else if(time>60*attack_speed){
+            Zombie temp=null;
+            for (Zombie zombie : Screen.zombies) {
+                if(check_Range(zombie)&&shootable){
+                    shoot();
+                    shootable=false;
+                    temp=zombie;
                     membersar++;
                     if (membersar > 15){
                         attack_damage=attack_damage+2; 
@@ -83,15 +96,19 @@ public class Littlepea extends Plant  {
                     }
                 }
             }
+            if(temp==null){
+                firstshoot=true;
+            }
             time=0 ;
         }else{
             time++;
         }
     }
-    public String getPicture() {
-        return picture;
-    }
-    public String getName(){
-        return name;
+    public void spawn_Plant(boolean lily){
+        Littlepea littlepea=new Littlepea(X, Y);
+        if(lily){
+            littlepea.setHealth(Health+100);
+        }
+        Screen.plants.add(littlepea);
     }
 }

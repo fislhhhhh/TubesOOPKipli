@@ -1,11 +1,11 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class PoleVaultingZombie extends Zombie {
-
+public class DolphinRiderZombie extends Zombie {
     boolean is_jump = false;
 
     public void Attack(Plant plant){
@@ -16,7 +16,6 @@ public class PoleVaultingZombie extends Zombie {
             X = X-120;
         }
     }
-
 
     public void Plant_In_Range(){
         Start_moving();
@@ -47,14 +46,14 @@ public class PoleVaultingZombie extends Zombie {
     }
 
 
-    protected PoleVaultingZombie(int X, int Y) {
+    protected DolphinRiderZombie(int X, int Y) {
         super(X, Y);
-        name = "PoleVaultingZombie";
+        name = "DolphinRiderZombie";
         Health =175;
         attack_damage=100000;
         attack_speed=1;
-        is_aquatic=false;
-        picture="res/Zombies/PoleVaultingZombie.jpeg";
+        is_aquatic=true;
+        picture="res/Zombies/dolphinezombie.jpg";
     }
 
     public void Draw(Graphics2D g2) {

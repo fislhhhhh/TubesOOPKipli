@@ -4,19 +4,28 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class PoleVaultingZombie extends Zombie {
+public class ScreenDoorZombie extends Zombie {
+    
+    
+    protected ScreenDoorZombie(int X, int Y) {
+        super(X, Y);
+        name = "ScreenDoorZombie";
+        Health = 100;
+        attack_damage=100;
+        attack_speed=1;
+        is_aquatic=false;
+        picture="res/Zombies/screenzombie.jpg";
 
-    boolean is_jump = false;
-
+    }
     public void Attack(Plant plant){
         plant.damage(attack_damage);
-        if(!is_jump){
-            is_jump = true;
-            attack_damage = 100;
-            X = X-120;
-        }
     }
-
+    public void Start_moving(){
+        moving=true;
+    }
+    public void Stop_moving(){
+        moving=false;
+    }
 
     public void Plant_In_Range(){
         Start_moving();
@@ -46,16 +55,14 @@ public class PoleVaultingZombie extends Zombie {
         return false;
     }
 
-
-    protected PoleVaultingZombie(int X, int Y) {
-        super(X, Y);
-        name = "PoleVaultingZombie";
-        Health =175;
-        attack_damage=100000;
-        attack_speed=1;
-        is_aquatic=false;
-        picture="res/Zombies/PoleVaultingZombie.jpeg";
+    public void damage(int amount){
+        Health=Health-amount;
+        System.out.println(Health);
+        if(Health<=0){
+            dead=true;
+        }
     }
+
 
     public void Draw(Graphics2D g2) {
         try {
@@ -69,21 +76,12 @@ public class PoleVaultingZombie extends Zombie {
     @Override
     public void actionPerformed() {
         if(moving){
-            if(is_slowed){
-                if (timer > 10){
-                    X-=1;
-                    Plant_In_Range();
-                    timer = 0;
-                }
-            }
-            else{
             if(timer>5){
                 X-=1;
                 Plant_In_Range();
                 timer=0;
             }
-            }
-
+            
         }else{
             if(timer>60){
                 Attack(target);
@@ -92,8 +90,9 @@ public class PoleVaultingZombie extends Zombie {
             }
         }
         timer++;
-        System.out.println(X);
+        if(X== 30){
+            System.out.println("lose");
+        }
     }
-
-
+    
 }

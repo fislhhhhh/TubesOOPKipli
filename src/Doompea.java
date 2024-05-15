@@ -6,31 +6,24 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Doompea extends Plant {
-    String name="Doompea";
-    int cost=425;
-    int Health =100;
-    int attack_speed=0;
-    int attack_damage=5000;
-    int range=-1;
-    int cooldown=20;
-    int timebomb=0;
-   
-    int time=0;
-    Boolean hasAttacked = false;
-    BufferedImage Png=null;
-    private String picture="res/Plants/doom.png";
+
     protected Doompea(int X, int Y) {
         super(X, Y);
-        //TODO Auto-generated constructor stub
+        name="Doompea";
+        cost=425;
+        Health =100;
+        attack_speed=0;
+        attack_damage=5000;
+        range=-1;
+        cooldown=20;
+        picture="res/Plants/doom.png";
     }
 
     public void shoot(){
         
             for (Zombie zombie : Screen.zombies) {
-                zombie.damage(attack_damage);  
-                zombie.dead = true;  
+                zombie.setdead(true);  
             }
-            hasAttacked = true;  
             afterkill();  
         }
         
@@ -41,11 +34,7 @@ public class Doompea extends Plant {
      }
 
     public void damage(int amount){
-        Health=Health-amount;
-        System.out.println(Health+" plant health" );
-        if(Health<=0){
-            dead=true;
-        }
+
     }
     public boolean check_Range(Shapes shape){
         switch (range) {
@@ -83,18 +72,14 @@ public class Doompea extends Plant {
     }
     @Override
     public void actionPerformed() {
-        if (timebomb >100){
-        if (!hasAttacked) {  
-            shoot();
-            hasAttacked = true;       
-        }
-        else{
-            afterkill();  
-        }
+            shoot();     
     }
-        timebomb++;        
-    }
-    public String getPicture() {
-        return picture;
+    public void spawn_Plant(boolean lily) {
+        Doompea doompea=new Doompea(X, Y);
+        if(lily){
+            doompea.setHealth(Health+100);
+        }
+        Screen.plants.add(doompea);
+
     }
 }

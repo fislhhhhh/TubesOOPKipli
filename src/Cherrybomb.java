@@ -6,34 +6,31 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Cherrybomb extends Plant  {
-    private String name="Cherrybomb";
-    int cost=75;
-    int Health =100;
-    int attack_speed=2;
-    int attack_damage=5000;
-    int range=1;
-    int cooldown=20;
-    boolean dead =false;
-    int time=0;
-    boolean hasAttacked = false;
-    BufferedImage Png=null;
-    private String picture="res/Plants/Cheerybomb.png";
+
     protected Cherrybomb(int X, int Y) {
         super(X, Y);
-        //TODO Auto-generated constructor stub
+        name="Cherrybomb";
+        cost=75;
+        Health =100;
+        attack_speed=2;
+        attack_damage=5000;
+        range=1;
+        cooldown=20;
+        picture="res/Plants/Cheerybomb.png";
     }
 
     public void shoot(){
-        Bullet bullet = new Boom(X, Y,attack_damage);
-        Projectile.Project_in(bullet);
+        for (Zombie zombie : Screen.zombies) {
+            if ((zombie.getY() >= Y-90&&zombie.getY() <= Y+90)&&(zombie.getX() >= X-90&&zombie.getX() <= X+90)) {  // Check if the zombie is in the same lane
+
+                zombie.setdead(true);  // Optionally set zombies as dead if damage is fatal
+            }
+        }
+        afterkill();
     }
 
     public void damage(int amount){
-        Health=Health-amount;
-        System.out.println(Health+" plant health" );
-        if(Health<=0){
-            dead=true;
-        }
+
     }
 
     public void afterkill(){
@@ -77,17 +74,13 @@ public class Cherrybomb extends Plant  {
     }
     @Override
     public void actionPerformed() {
-        if(time>60*attack_speed){
-            shoot();
-            afterkill();
-        }else{
-            time++;
+        shoot();
+    }
+    public void spawn_Plant(boolean lily){
+        Cherrybomb cherrybomb=new Cherrybomb(X, Y);
+        if(lily){
+            cherrybomb.setHealth(Health+100);
         }
-    }
-    public String getPicture() {
-        return picture;
-    }
-    public String getName(){
-        return name;
+        Screen.plants.add(cherrybomb);
     }
 }

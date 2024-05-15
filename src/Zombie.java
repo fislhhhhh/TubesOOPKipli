@@ -6,21 +6,20 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Zombie extends Square implements CustomListener {
-    String name = "Zombie";
-    int Health =125;
-    int attack_damage=100;
-    int attack_speed=1;
-    boolean is_aquatic=false;
-    boolean moving=true;
-    BufferedImage Png=null;
-    boolean plant_in_range=false;
-    int timer=0;
+    protected String name = "Zombie";
+    protected int Health =125;
+    protected int attack_damage=100;
+    protected int attack_speed=1;
+    protected boolean is_aquatic=false;
+    protected boolean moving=true;
+    protected BufferedImage Png=null;
+    protected boolean plant_in_range=false;
+    protected int timer=0;
     protected boolean dead=false;
-    boolean attack=false;
-    Plant target=null;
-    String picture="res/Zombies/NormalZombie.jpg";
-    Boolean is_slowed=false;
-    int slowtime=0;
+    protected Plant target=null;
+    protected String picture="res/Zombies/NormalZombie.jpg";
+    protected Boolean is_slowed=false;
+    protected int slowtime=0;
     public void Attack(Plant plant){
         plant.damage(attack_damage);
     }
@@ -113,6 +112,9 @@ public class Zombie extends Square implements CustomListener {
     }
     public boolean getDead(){
         return dead;
+    }
+    public void setdead(boolean dead){
+        this.dead=dead;
     }
      
 }

@@ -19,8 +19,13 @@ public class Squash extends Plant  {
     }
 
     public void shoot(){
-        Bullet bullet = new Stomp(X, Y,attack_damage);
-        Projectile.Project_in(bullet);
+        for (Zombie zombie : Screen.zombies) {
+            if(zombie.getX()>=X&&zombie.getX()<=X+90&&zombie.Y==Y){
+                zombie.setdead(true);
+            }
+        }
+        this.Health=0;
+        dead=true;
     }
 
     
@@ -31,10 +36,6 @@ public class Squash extends Plant  {
         if(Health<=0){
             dead=true;
         }
-    }
-    public void afterkill(){
-       this.Health = 0;
-       dead = true;
     }
     public boolean check_Range(Shapes shape){
         switch (range) {
@@ -72,18 +73,12 @@ public class Squash extends Plant  {
 
     @Override
     public void actionPerformed() {
-        if (!hasAttacked) {  
             for (Zombie zombie : Screen.zombies) {
                 if (check_Range(zombie)) {
                     shoot();
-                    hasAttacked = true;  
-                    break;  
                 }
             }
-        }
-        if (hasAttacked) {  
-            afterkill();  
-        }
+
     }
     public void spawn_Plant(boolean lily){
         Squash squash=new Squash(X, Y);

@@ -75,14 +75,52 @@ public class Ticksystem implements Runnable {
             if(time>=20&&time<=160 && Screen.zombies.size()<10){
                 Random random =new Random();
                 int y=random.nextInt(1,11);
-                if(y==3||y==5||y==7){
+                if(y==3||y==7||y==10){
                     y =random.nextInt(1,7);
                     if((y==3)||(y==4)){
-                        Zombie zombie = new DuckyTubeZombie(10*Screen.tilesize, y*Screen.tilesize);
-                        Spawner.spawn_Zombie(zombie);
+                        int x =random.nextInt(1,3);
+                        switch (x) {
+                            case 1:
+                            Zombie zombie = new DuckyTubeZombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                            case 2:
+                            zombie = new DolphinRiderZombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                        
+                        }
+
                     }else{
-                        Zombie zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
-                        Spawner.spawn_Zombie(zombie);
+                        int x =random.nextInt(1,7);
+                        switch (x) {
+                            case 1:
+                            Zombie zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                            case 2:
+                            zombie = new BucketheadZombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                            case 3:
+                            zombie = new ConeheadZombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                            case 4:
+                            zombie = new ScreenDoorZombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                            case 5:
+                            zombie = new PoleVaultingZombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                            case 6:
+                            zombie = new RaZombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+
+                        }
+
                     }
 
                 }
