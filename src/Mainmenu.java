@@ -51,6 +51,7 @@ public class Mainmenu extends JPanel implements MouseListener{
         }
         if(mouseX>260&&mouseX<350&&mouseY>260&&mouseY<300){
             System.out.println("load");
+            
         }
         if(mouseX>260&&mouseX<350&&mouseY>300&&mouseY<340){
             System.out.println("almanac");
