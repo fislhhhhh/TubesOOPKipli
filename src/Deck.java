@@ -6,13 +6,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 public class Deck extends Square{
     String picture;
-    private BufferedImage Png;
+    
     protected Deck(int X, int Y,String picture) {
         super(X*Screen.tilesize, Y*Screen.tilesize);
         this.picture=picture;
         //TODO Auto-generated constructor stub
     }
     public void Draw(Graphics2D g2) {
+        BufferedImage Png=null;
         try {
             Png = ImageIO.read(new File(picture));
         } catch (IOException e) {

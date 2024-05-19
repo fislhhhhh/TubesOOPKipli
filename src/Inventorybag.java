@@ -5,14 +5,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Inventorybag extends Square {
-    Plant plant;
+public class Inventorybag extends Square implements CustomListener {
+    Plant plant;//3
     private BufferedImage Png;
-    Boolean picked = false;
+    Boolean picked = false;//selalu true
     int X2=0;
     int Y2=0;
-    int timer=0;
-    boolean on_cooldown=false;
+    int timer=0;//1
+    private boolean on_cooldown=false;//2
     protected Inventorybag(int X, int Y,Plant plant) {
         super(X*Screen.tilesize, Y*Screen.tilesize);
         this.plant=plant;
@@ -37,6 +37,12 @@ public class Inventorybag extends Square {
                 e.printStackTrace();
             }
             g2.drawImage(Png,X2,Y2,1*Screen.tilesize,1*Screen.tilesize,null);
+        }
+        
+    }
+    @Override
+    public void actionPerformed() {
+        if(on_cooldown){
             if(timer>plant.cooldown*60){
                 on_cooldown=false;
                 timer=0;
@@ -44,7 +50,24 @@ public class Inventorybag extends Square {
                 timer++;
             }
         }
-        
+    }
+    public void setOn_Cooldown(boolean on_cooldown){
+        this.on_cooldown=on_cooldown; 
+    }
+    public boolean getOn_Cooldown(){
+        return on_cooldown;
+    }
+    public int gettimer() {
+        return timer;
+    }
+    public String getPlaString(){
+        return plant.getName();
+    }
+    public void setTimer(int timer) {
+        this.timer = timer;
+    }
+    public void setPicked(Boolean picked) {
+        this.picked = picked;
     }
 
 }

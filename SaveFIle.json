@@ -1,0 +1,53 @@
+{
+  "dStrings": [
+    "Snowpea",
+    "Cherrybomb",
+    "Lilypad",
+    "Doompea",
+    "Peashooter",
+    "Sunflower"
+  ],
+  "dtimer": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "dcooldown": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "jumlahdeck": 6,
+  "s_sun": 25,
+  "s_ticktime": 2,
+  "bname": [],
+  "bx": [],
+  "by": [],
+  "bdamage": [],
+  "pname": [],
+  "px": [],
+  "py": [],
+  "phealth": [],
+  "ptimer": [],
+  "pfp": [],
+  "lptimer": [],
+  "lpdamage": [],
+  "zname": [],
+  "zx": [],
+  "zy": [],
+  "zhealth": [],
+  "ztimer": [],
+  "zmoving": [],
+  "zslowed": [],
+  "zslowtime": [],
+  "rzsun": [],
+  "rztime": [],
+  "aztime": [],
+  "zjump": []
+}

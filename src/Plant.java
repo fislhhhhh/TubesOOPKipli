@@ -15,7 +15,7 @@ public abstract class Plant extends Shapes implements CustomListener  {
     protected int cooldown=10;
     protected boolean dead =false;
     protected int time=0;
-    protected BufferedImage Png=null;
+
     protected String picture="res/Plants/images.jpg";
     protected Plant(int X, int Y) {
         super(X, Y);
@@ -60,12 +60,15 @@ public abstract class Plant extends Shapes implements CustomListener  {
         
     }
     public void Draw(Graphics2D g2) {
+        BufferedImage Png=null;
         try {
             Png = ImageIO.read(new File(picture));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
+        // g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
     }
     @Override
     public void actionPerformed() {
@@ -97,5 +100,20 @@ public abstract class Plant extends Shapes implements CustomListener  {
     }
     public boolean getDead(){
         return dead;
+    }
+    public String getName(){
+        return name;
+    }
+    public int getAttack_damage() {
+        return attack_damage;
+    }
+    public int getTime() {
+        return time;
+    }
+    public void setAttack_damage(int attack_damage) {
+        this.attack_damage = attack_damage;
+    }
+    public void setTime(int time) {
+        this.time = time;
     }
 }

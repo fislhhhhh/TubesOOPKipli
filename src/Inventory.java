@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 public class Inventory extends JPanel implements MouseListener{
     Button button;
-    static ArrayList<Plant>Iplant = new ArrayList<>();
+    ArrayList<Plant>Iplant = new ArrayList<>();
     ArrayList<Inventorybag> bag=new ArrayList<>();
     static ArrayList<Inventorybag> decks=new ArrayList<>();
     boolean deckarea=false;
@@ -16,6 +16,12 @@ public class Inventory extends JPanel implements MouseListener{
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
         addMouseListener(this);
+        filledInventory();
+    }
+    public void filledInventory(){
+        Iplant.clear();
+        bag.clear();
+        decks.clear();
         Squash squash=new Squash(2, 2);
         Iplant.add(squash);
         Snowpea snowpea=new Snowpea(1, 2);
@@ -51,15 +57,14 @@ public class Inventory extends JPanel implements MouseListener{
                 X++;
             }
         }
-
-
     }
     @Override
     protected void paintComponent(Graphics g) {
         
         super.paintComponent(g);
         Graphics2D g2=(Graphics2D) g;
-        button=new Button(7*60, 0*60,Color.BLUE);
+        // button=new Button(7*60, 0*60,Color.BLUE);
+        button=new Button(7*Screen.tilesize,0*Screen.tilesize,120,60,"res/Menu.png");
         for (int i = 0; i < 6; i++) {
             new Deck((i+1), 0,"res/Deck.png").Draw(g2);
         }
@@ -97,7 +102,7 @@ public class Inventory extends JPanel implements MouseListener{
         int y=button.getY();
         int width = button.width;
         int height = button.height;
-        if(mouseX >= 60 && mouseX <= (6*60) &&
+        if(mouseX >= 60 && mouseX <= (7*60) &&
         mouseY >= 0 && mouseY <= (60)){
             deckarea=true;
         }else {
@@ -126,7 +131,7 @@ public class Inventory extends JPanel implements MouseListener{
         }else{
             if (mouseX >= x && mouseX <= (x+width) &&
             mouseY >= y && mouseY <= (y + height)&&decks.size()==6) {
-                Gamepanel.Startgame();
+                Gamepanel.startGame();
             }
             Iterator<Inventorybag> bagInterator = bag.iterator();
             while (bagInterator.hasNext()) {

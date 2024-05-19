@@ -6,8 +6,9 @@ import javax.imageio.ImageIO;
 public class Bullet extends Square implements CustomListener{
     int time=0;
     int damage=0;
-    private BufferedImage Png;
     Boolean hit=false;
+    BufferedImage Png=null;
+    String name="Bullet";
     protected Bullet(int X, int Y, int damage) {
         super(X, Y);
         this.damage=damage;
@@ -51,5 +52,11 @@ public class Bullet extends Square implements CustomListener{
                 hit(zombie);
             }
         }
+    }
+    public String getName() {
+        return name;
+    }
+    public int getDamage() {
+        return damage;
     }
 }

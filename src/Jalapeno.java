@@ -1,10 +1,3 @@
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 public class Jalapeno  extends Plant {
 
     protected Jalapeno(int X, int Y) {
@@ -63,14 +56,6 @@ public class Jalapeno  extends Plant {
         }
         return false;
         
-    }
-    public void Draw(Graphics2D g2) {
-        try {
-            Png = ImageIO.read(new File(picture));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
     @Override
     public void actionPerformed() { 

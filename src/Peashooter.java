@@ -1,7 +1,3 @@
-import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 public class Peashooter extends Plant  {
     private boolean firstshoot=true;
 
@@ -86,19 +82,17 @@ public class Peashooter extends Plant  {
         return false;
         
     }
-    public void Draw(Graphics2D g2) {
-        try {
-            Png = ImageIO.read(new File(picture));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
-    }
     public void spawn_Plant(boolean lily){
         Peashooter peashooter=new Peashooter(X, Y);
         if(lily){
             peashooter.setHealth(Health+100);
         }
         Screen.plants.add(peashooter);
+    }
+    public boolean getFirstshoot(){
+        return firstshoot;
+    }
+    public void setFirstshoot(boolean firstshoot) {
+        this.firstshoot = firstshoot;
     }
 }

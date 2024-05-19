@@ -1,20 +1,12 @@
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
 
 public class Sun extends Shapes implements CustomListener{
     int pointsun = 25;
-    int intervalsun=0;
+    int intervalsun=5;
     Random acak = new Random();
-    String gambarsun = "";
-    BufferedImage Png=null;
     int timer = 0;
     static Sun sun;
-    static int totalsun = 20000000;
+    static int totalsun = 25;
     protected Sun(int X ,int Y){
         super(X,Y);
     }
@@ -24,15 +16,11 @@ public class Sun extends Shapes implements CustomListener{
     public void sunnambah(){
         totalsun = totalsun + pointsun;
     }
-
-
-    public void Draw(Graphics2D g2) {
-        try {
-            Png = ImageIO.read(new File(gambarsun));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
+    public void setSun(int amount){
+        totalsun=amount;
+    }
+    public int getTotalsun() {
+        return totalsun;
     }
     
 

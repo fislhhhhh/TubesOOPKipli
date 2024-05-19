@@ -42,11 +42,12 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
             new Land(i*tilesize, 5*tilesize).Draw(g2);
             new Land(i*tilesize, 6*tilesize).Draw(g2);
         }
-        for(int i =1;i<10;i++){
-            new Deck(i, 0,"res/Deck.png").Draw(g2);
+        for(int i =1;i<8;i++){
+            new Deck(i, 0,"res/plantstorage.png").Draw(g2);
             new Deck(i, 7,"res/Deck.png").Draw(g2);
         }
-        new Deck(7, 0,"res/shovel.jpg").Draw(g2);
+        new Button(8*Screen.tilesize,0,120,60,"res/Menu.png").Draw(g2);;
+        new Deck(7, 0,"res/shovel.png").Draw(g2);
         for (int i = 0; i < zombies.size(); i++) {
             if (zombies.get(i)!=null) {
                 zombies.get(i).Draw(g2);
@@ -64,7 +65,7 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
         }
         int si=1;
         for (Inventorybag inventorybag : Inventory.decks) {
-            if(inventorybag!=null){
+            if(inventorybag!=null){ 
                 inventorybag.X2=si*60;
                 inventorybag.Y2=0;
                 inventorybag.Draw(g2);
@@ -113,7 +114,7 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
                 height=Screen.tilesize;
             if (mouseX >= x && mouseX <= (x+width) &&
                 mouseY >= y && mouseY <= (y + height)) {
-                    if(!inventorybag.on_cooldown){
+                    if(!inventorybag.getOn_Cooldown()){
                         System.out.println("pick");
                         dragging=true;
                         dragOffsetX = mouseX - inventorybag.X2;
@@ -132,7 +133,11 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
             dragging=true;
             dragOffsetX = mouseX - (7*Screen.tilesize);
             dragOffsetY = mouseY - (Screen.tilesize);
-        }    
+        }  
+        if (mouseX >= 8*Screen.tilesize && mouseX <= (10*Screen.tilesize) &&
+        mouseY >= 0 && mouseY <= Screen.tilesize) {
+            Gamepanel.mainMenu();
+        } 
     }
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -188,7 +193,7 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
                         if(Moveplant!=null){
                             Moveplant.picked=true;
                             dragging=false;
-                            Moveplant.on_cooldown=true;
+                            Moveplant.setOn_Cooldown(true);
                             System.out.println(Moveplant.plant.getCost());
                             Sun.sunpakai(Moveplant.plant.getCost());
                             Moveplant=null;
@@ -244,7 +249,7 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
             int xi=Math.round(xf);
             int yi=Math.round(yf);
             if(shovel){
-                deck=new Deck(xi, yi, "res/shovel.jpg");
+                deck=new Deck(xi, yi, "res/shovel1.png");
             }else{
                 if(xi>0 && xi<10){
                     if(yi>0&&yi<7){

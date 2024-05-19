@@ -5,10 +5,11 @@ public class Ticksystem implements Runnable {
     int fps=60;
     int i=0;
     int timer=0;
-    int time=0;
-    boolean start=false;
+    private int time=0;
+    private boolean Running=true;
+    private boolean start=false;
     private CustomListener listener;
-
+    Random random =new Random();
     public void setCustomListener(CustomListener listener) {
         this.listener = listener;
     }
@@ -22,13 +23,16 @@ public class Ticksystem implements Runnable {
         gamThread = new Thread(this);
         gamThread.start();
     }
+    public void setTime(int amount){
+        time=amount;
+    }
     @Override
     public void run() {
         double interval = 1000000000/fps;
         double delta =0;
         long lastTime=System.nanoTime();
         Long currettime;
-        while (gamThread!=null) {
+        while (Running) {
             currettime=System.nanoTime();
             delta += (currettime-lastTime)/interval;
             lastTime=currettime;
@@ -39,7 +43,18 @@ public class Ticksystem implements Runnable {
             
         }
     }
-
+    public void setRunning(boolean run){
+        Running=run;
+    }
+    public boolean getRunning(){
+        return Running;
+    }
+    public int getTime(){
+        return time;
+    }
+    public void start(boolean run){
+        start=run;
+    }
     public void Update(){
         Gamepanel.up();
         Iterator<Bullet> bulletIterator = Screen.bullets.iterator();
@@ -70,15 +85,49 @@ public class Ticksystem implements Runnable {
                 plantIterator.remove(); // Remove the Plant from the list
             }
         }
+        Iterator<Inventorybag> invIterator = Inventory.decks.iterator();
+        while (invIterator.hasNext()) {
+            Inventorybag bag = invIterator.next();
+            this.setCustomListener(bag);
+            this.doSomething();
+        }
         if(timer>60&&time<=200&&start){
             time++;
             if(time>=20&&time<=160 && Screen.zombies.size()<10){
-                Random random =new Random();
-                int y=random.nextInt(1,11);
-                if(y==3||y==7||y==10){
-                    y =random.nextInt(1,7);
+                if(time==50||time==150){
+                    for (int i = 0; i < 5; i++) {
+                        spawnZombie();
+                    }
+                }else{
+                    int d=random.nextInt(1,11);
+                    if(d==3||d==7||d==10){
+                        spawnZombie();
+                    }
+
+                }
+
+            }
+            timer=0;
+        }else{
+            timer++;
+        }
+        if(time>100){
+            Screen.day=false;
+        }
+        if(time>=200&&Screen.zombies.isEmpty()){
+            System.out.println("gameover");
+        }
+        if(start){
+            this.setCustomListener(Sun.sun);
+            this.doSomething();
+        }
+    }
+
+    private void spawnZombie(){
+        int y;
+        y =random.nextInt(1,7);
                     if((y==3)||(y==4)){
-                        int x =random.nextInt(1,3);
+                        int x =random.nextInt(1,4);
                         switch (x) {
                             case 1:
                             Zombie zombie = new DuckyTubeZombie(10*Screen.tilesize, y*Screen.tilesize);
@@ -88,11 +137,15 @@ public class Ticksystem implements Runnable {
                             zombie = new DolphinRiderZombie(10*Screen.tilesize, y*Screen.tilesize);
                             Spawner.spawn_Zombie(zombie);
                                 break;
+                            case 3:
+                            zombie = new AssassinZombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
                         
                         }
 
                     }else{
-                        int x =random.nextInt(1,7);
+                        int x =random.nextInt(1,13);
                         switch (x) {
                             case 1:
                             Zombie zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
@@ -118,26 +171,34 @@ public class Ticksystem implements Runnable {
                             zombie = new RaZombie(10*Screen.tilesize, y*Screen.tilesize);
                             Spawner.spawn_Zombie(zombie);
                                 break;
+                            case 7:
+                            zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                            case 8:
+                            zombie = new DiggerZombie(7*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break; 
+                            case 9:
+                            zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                            case 10:
+                            zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                            case 11:
+                            zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
+                            case 12:
+                            zombie = new Zombie(10*Screen.tilesize, y*Screen.tilesize);
+                            Spawner.spawn_Zombie(zombie);
+                                break;
 
                         }
 
                     }
-
-                }
-
-            }
-            timer=0;
-        }else{
-            timer++;
-        }
-        if(time>100){
-            Screen.day=false;
-        }
-        if(time>=200&&Screen.zombies.isEmpty()){
-            System.out.println("gameover");
-        }
-        this.setCustomListener(Sun.sun);
-        this.doSomething();
     }
     
 }

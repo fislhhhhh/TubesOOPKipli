@@ -1,9 +1,3 @@
-import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 public class Sunflower extends Plant   {
     private int timer=0;
     protected Sunflower(int X, int Y) {
@@ -28,14 +22,6 @@ public class Sunflower extends Plant   {
     }
     public boolean check_Range(Shapes shape){
         return true;
-    }
-    public void Draw(Graphics2D g2) {
-        try {
-            Png = ImageIO.read(new File(picture));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
     @Override
     public void actionPerformed() {

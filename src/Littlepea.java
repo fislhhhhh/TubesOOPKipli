@@ -1,9 +1,3 @@
-import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 public class Littlepea extends Plant  {
     private boolean firstshoot=true;
     private int membersar = 0;
@@ -57,14 +51,6 @@ public class Littlepea extends Plant  {
         return false;
         
     }
-    public void Draw(Graphics2D g2) {
-        try {
-            Png = ImageIO.read(new File(picture));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
-    }
     @Override
     public void actionPerformed() {
         boolean shootable=true;
@@ -110,5 +96,17 @@ public class Littlepea extends Plant  {
             littlepea.setHealth(Health+100);
         }
         Screen.plants.add(littlepea);
+    }
+    public int getMembersar() {
+        return membersar;
+    }
+    public void setMembersar(int membersar) {
+        this.membersar = membersar;
+    }
+    public boolean getFirstshoot(){
+        return firstshoot;
+    }
+    public void setFirstshoot(boolean firstshoot) {
+        this.firstshoot = firstshoot;
     }
 }

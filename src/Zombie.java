@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -12,7 +11,6 @@ public class Zombie extends Square implements CustomListener {
     protected int attack_speed=1;
     protected boolean is_aquatic=false;
     protected boolean moving=true;
-    protected BufferedImage Png=null;
     protected boolean plant_in_range=false;
     protected int timer=0;
     protected boolean dead=false;
@@ -72,11 +70,13 @@ public class Zombie extends Square implements CustomListener {
     }
 
     public void Draw(Graphics2D g2) {
+        Image Png=null;
         try {
             Png = ImageIO.read(new File(picture));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
     }
 
@@ -115,6 +115,39 @@ public class Zombie extends Square implements CustomListener {
     }
     public void setdead(boolean dead){
         this.dead=dead;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getHealth() {
+        return Health;
+    }
+    public int getTimer() {
+        return timer;
+    }
+    public boolean getMoving(){
+        return moving;
+    }
+    public boolean getSlowed(){
+        return is_slowed;
+    }
+    public int getSlowtime() {
+        return slowtime;
+    }
+    public void setHealth(int health) {
+        Health = health;
+    }
+    public void setTimer(int timer) {
+        this.timer = timer;
+    }
+    public void setMoving(boolean moving) {
+        this.moving = moving;
+    }
+    public void setIs_slowed(Boolean is_slowed) {
+        this.is_slowed = is_slowed;
+    }
+    public void setSlowtime(int slowtime) {
+        this.slowtime = slowtime;
     }
      
 }

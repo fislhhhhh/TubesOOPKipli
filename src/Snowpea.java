@@ -1,16 +1,10 @@
-import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 public class Snowpea extends Plant {
 
     boolean firstshoot=true;
     protected Snowpea(int X, int Y) {
         super(X, Y);
         
-        name="snowpea";
+        name="Snowpea";
         cost=175;
         Health =100;
         attack_speed=4;
@@ -59,14 +53,6 @@ public class Snowpea extends Plant {
         return false;
         
     }
-    public void Draw(Graphics2D g2) {
-        try {
-            Png = ImageIO.read(new File(picture));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
-    }
     @Override
     public void actionPerformed() {
         boolean shootable=true;
@@ -103,5 +89,11 @@ public class Snowpea extends Plant {
             lily=false;
         }
         Screen.plants.add(snowpea);
+    }
+    public boolean getFirstshoot(){
+        return firstshoot;
+    }
+    public void setFirstshoot(boolean firstshoot) {
+        this.firstshoot = firstshoot;
     }
 }
