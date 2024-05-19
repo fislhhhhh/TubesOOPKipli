@@ -131,7 +131,7 @@ public class Inventory extends JPanel implements MouseListener{
         }else{
             if (mouseX >= x && mouseX <= (x+width) &&
             mouseY >= y && mouseY <= (y + height)&&decks.size()==6) {
-                Gamepanel.startGame();
+                Gamepanel.Startgame();
             }
             Iterator<Inventorybag> bagInterator = bag.iterator();
             while (bagInterator.hasNext()) {

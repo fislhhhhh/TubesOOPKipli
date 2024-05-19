@@ -105,28 +105,6 @@ public class Gamepanel  {
         ticksystem.Startgame();
         Sun.sun = new Sun(0, 0);
     }
-    public static void almanaChoose(){
-        frame.remove(mainmenu);
-        frame.setTitle("Almanac");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(true);
-        almanachoose = new Almanachoose();
-        frame.add(almanachoose);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-    public static void mainMenubalik(){
-        frame.remove(almanachoose);
-        frame.setTitle("Main Menu");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(true);
-        mainmenu = new Mainmenu();
-        frame.add(mainmenu);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
     public static void up(){
         screen.screenrefresh();
         inventory.screenrefresh();

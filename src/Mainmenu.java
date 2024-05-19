@@ -1,6 +1,11 @@
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Mainmenu extends JPanel implements MouseListener{
     Button button;
@@ -37,7 +42,7 @@ public class Mainmenu extends JPanel implements MouseListener{
         int mouseY = e.getY();
         if(mouseX>260&&mouseX<350&&mouseY>160&&mouseY<200){
             System.out.println("ada");
-            Gamepanel.Inventoryscene();
+            Gamepanel.inventoryScene();
             
         }
         if(mouseX>260&&mouseX<350&&mouseY>220&&mouseY<260){
