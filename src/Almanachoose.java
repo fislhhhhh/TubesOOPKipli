@@ -1,16 +1,23 @@
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class Mainmenu extends JPanel implements MouseListener{
+public class Almanachoose extends JPanel implements MouseListener{
     Button button;
     private BufferedImage Png;
-    protected String picture="res/MainMenu.png";
-    Mainmenu(){
+    protected String picture="res/almanachoose.png";
+    Almanachoose(){
         this.setPreferredSize(new Dimension(Screen.tilesize*10,Screen.tilesize*6));
         this.setBackground(Color.white);
         this.setDoubleBuffered(true);
         addMouseListener(this);
+        System.out.println("Current working directory: " + System.getProperty("user.dir"));
+
 
     }
     public void Draw(Graphics2D g2) {
@@ -35,29 +42,19 @@ public class Mainmenu extends JPanel implements MouseListener{
     public void mousePressed(MouseEvent e) {
         int mouseX = e.getX();
         int mouseY = e.getY();
-        if(mouseX>260&&mouseX<350&&mouseY>160&&mouseY<200){
-            System.out.println("ada");
-            Gamepanel.Inventoryscene();
-            
+        if(mouseX>70&&mouseX<215&&mouseY>165&&mouseY<210){
+            System.out.println("plant"); 
         }
-        if(mouseX>260&&mouseX<350&&mouseY>220&&mouseY<260){
-            System.out.println("help");
-            
-        }
-        if(mouseX>260&&mouseX<350&&mouseY>260&&mouseY<300){
-            System.out.println("load");
-            
-        }
-        if(mouseX>260&&mouseX<350&&mouseY>300&&mouseY<340){
-            System.out.println("almanac");
-            Gamepanel.almanaChoose();
+        if(mouseX>390&&mouseX<530&&mouseY>165&&mouseY<210){
+            System.out.println("zombos");
+       
         }
 
 
 
 
-        if(mouseX>540&&mouseX<630&&mouseY>305&&mouseY<360){
-            System.exit(0);
+        if(mouseX>0&&mouseX<60&&mouseY>0&&mouseY<60){
+            Gamepanel.mainMenubalik();
         }
     }
     @Override
