@@ -9,6 +9,7 @@ public class Gamepanel  {
     static Almanachoose almanachoose= new Almanachoose();
     static Plantalmanac plantalmanac= new Plantalmanac();
     static Zombiealmanac zombiealmanac = new Zombiealmanac();
+    static Help help = new Help();
     public static void Startgame() {
         frame.remove(inventory);
         inventory.setPlantdata(null);
@@ -81,6 +82,15 @@ public class Gamepanel  {
         ticksystem=new Ticksystem();
         ticksystem.Startgame();
         Sun.sun = new Sun(0, 0);
+    }
+    public static void help(){
+        frame.remove(mainmenu);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+        frame.add(help);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
     public static void almanaChoose(){
         frame.remove(mainmenu);
