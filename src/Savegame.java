@@ -14,13 +14,13 @@ public class Savegame {
     }
     public void saving(){
         Saveformat saveformat = new Saveformat();
-        saveformat.setSave(Sun.sun.getTotalsun(), Screen.plants, Screen.zombies, Screen.bullets, Gamepanel.ticksystem.getTime(), Inventory.decks);
+        saveformat.setSave(Sun.sun.getTotalsun(), Screen.plants, Screen.zombies, Screen.bullets, Gamepanel.ticksystem.getTime(), Inventory.decks,Gamepanel.ticksystem.getSpawntime());
         Savefile savefile = new Savefile(saveformat); 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         String json = gson.toJson(savefile);
 
-        try (FileWriter writer = new FileWriter("SaveFIle.json")) {
+        try (FileWriter writer = new FileWriter("Save/SaveFIle.json")) {
             writer.write(json);
             System.out.println("Data has been saved to gameData.json");
         } catch (IOException e) {

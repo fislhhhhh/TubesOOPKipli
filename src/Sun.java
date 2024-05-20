@@ -6,7 +6,7 @@ public class Sun extends Shapes implements CustomListener{
     Random acak = new Random();
     int timer = 0;
     static Sun sun;
-    static int totalsun = 25;
+    static int totalsun = 50;
     protected Sun(int X ,int Y){
         super(X,Y);
     }

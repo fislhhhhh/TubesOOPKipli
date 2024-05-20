@@ -26,7 +26,7 @@ public class Slowbullet extends Bullet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        g2.drawImage(Png,X,Y,1*Screen.tilesize,1*Screen.tilesize,null);
+        g2.drawImage(Png,X,Y,1*Screen.tilesize/2,1*Screen.tilesize/2,null);
     }
     
     public void actionPerformed() {

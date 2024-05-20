@@ -6,6 +6,7 @@ public class Ticksystem implements Runnable {
     int i=0;
     int timer=0;
     private int time=0;
+    private int spawntime=0;
     private boolean Running=true;
     private boolean start=false;
     private CustomListener listener;
@@ -25,6 +26,12 @@ public class Ticksystem implements Runnable {
     }
     public void setTime(int amount){
         time=amount;
+    }
+    public int getSpawntime() {
+        return spawntime;
+    }
+    public void setSpawntime(int spawntime) {
+        this.spawntime = spawntime;
     }
     @Override
     public void run() {
@@ -93,17 +100,19 @@ public class Ticksystem implements Runnable {
         }
         if(timer>60&&time<=200&&start){
             time++;
-            if(time>=20&&time<=160 && Screen.zombies.size()<10){
+            spawntime++;
+            if(time>=20&&time<=160 ){
                 if(time==50||time==150){
                     for (int i = 0; i < 5; i++) {
                         spawnZombie();
+                        System.out.println("flag");
                     }
-                }else{
+                }else if((Screen.zombies.size()<10)&&spawntime>=3){
                     int d=random.nextInt(1,11);
                     if(d==3||d==7||d==10){
                         spawnZombie();
                     }
-
+                    spawntime=0;
                 }
 
             }

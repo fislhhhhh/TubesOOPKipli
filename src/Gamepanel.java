@@ -6,9 +6,12 @@ public class Gamepanel  {
     static Inventory inventory = new Inventory();
     static Mainmenu mainmenu = new Mainmenu();
     static Ticksystem ticksystem;
-    static Almanachoose almanachoose;
+    static Almanachoose almanachoose= new Almanachoose();
+    static Plantalmanac plantalmanac= new Plantalmanac();
+    static Zombiealmanac zombiealmanac = new Zombiealmanac();
     public static void Startgame() {
         frame.remove(inventory);
+        inventory.setPlantdata(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
         frame.add(screen);
@@ -30,9 +33,6 @@ public class Gamepanel  {
             ticksystem.setRunning(true);
             inventory.filledInventory();
         }
-    }
-    public static void saveGame(){
-
     }
     public static void loadGame(){
         frame.remove(mainmenu);
@@ -62,11 +62,12 @@ public class Gamepanel  {
         ticksystem.start(false);
         Savegame savegame= Savegame.getInstance();
         savegame.saving();
-        Sun.sun.setSun(0);
+        Sun.sun.setSun(50);
         Screen.plants.clear();
         Screen.zombies.clear();
         Screen.bullets.clear();
         ticksystem.setTime(0);
+        ticksystem.setSpawntime(0);
     }
     public static void start(){
         frame =new JFrame();
@@ -83,27 +84,44 @@ public class Gamepanel  {
     }
     public static void almanaChoose(){
         frame.remove(mainmenu);
-        frame.setTitle("Almanac");
+        frame.remove(plantalmanac);
+        frame.remove(zombiealmanac);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
-        almanachoose = new Almanachoose();
         frame.add(almanachoose);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+    public static void plantAlmanac(){
+        frame.remove(almanachoose);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+        frame.add(plantalmanac);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+    public static void zombieAlmanac(){
+        frame.remove(almanachoose);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+        frame.add(zombiealmanac);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
     public static void mainMenubalik(){
         frame.remove(almanachoose);
-        frame.setTitle("Main Menu");
+        frame.remove(inventory);
+        inventory.setPlantdata(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
         frame.add(mainmenu);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        ticksystem=new Ticksystem();
-        ticksystem.Startgame();
-        Sun.sun = new Sun(0, 0);
+        ticksystem.setRunning(false);
     }
     public static void up(){
         screen.screenrefresh();

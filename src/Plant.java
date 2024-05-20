@@ -37,7 +37,7 @@ public abstract class Plant extends Shapes implements CustomListener  {
         switch (range) {
             case -1:
             if(shape!=null){
-                if(Y==shape.getY()){
+                if(Y==shape.getY()&&X<=shape.getX()){
                     System.out.println("case -1");
                     return true;
                 }
@@ -115,5 +115,8 @@ public abstract class Plant extends Shapes implements CustomListener  {
     }
     public void setTime(int time) {
         this.time = time;
+    }
+    public int getCooldown() {
+        return cooldown;
     }
 }

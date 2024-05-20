@@ -82,7 +82,7 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
         }
         Font font=new Font("Verdana",Font.BOLD,14);
         g2.setFont(font);
-        g2.setColor(Color.RED);
+        g2.setColor(Color.BLACK);
         String string=Sun.totalsun+"";
         g2.drawString(string, 20, 60);
         g2.dispose();
@@ -149,13 +149,7 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
                     Iterator<Plant> plantIterator = Screen.plants.iterator();
                     while (plantIterator.hasNext()) {
                         Plant plant = plantIterator.next();
-                        System.out.println((planted.Y>2*tilesize&&planted.Y<5*tilesize)+"1");
-                        System.out.println((!(plant.X==planted.X&&plant.Y==planted.Y))+"2");
-                        System.out.println((planted.getName()!="Lilypad")+"3");
-                        System.out.println((!lily)+"4");
-                        System.out.println(noLily+"5");
                         if((plant.getName()!="Lilypad")&&!(planted.Y>2*tilesize&&planted.Y<5*tilesize)){
-                            System.out.println("6");
                             if(plant.X==planted.X&&plant.Y==planted.Y){
                                 Moveplant.picked=true;
                                 dragging=false;

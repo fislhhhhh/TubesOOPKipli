@@ -11,6 +11,7 @@ public class Inventory extends JPanel implements MouseListener{
     ArrayList<Inventorybag> bag=new ArrayList<>();
     static ArrayList<Inventorybag> decks=new ArrayList<>();
     boolean deckarea=false;
+    Plant plantdata=null;
     Inventory(){
         this.setPreferredSize(new Dimension(Screen.tilesize*11,Screen.tilesize*8));
         this.setBackground(Color.BLACK);
@@ -63,14 +64,12 @@ public class Inventory extends JPanel implements MouseListener{
         
         super.paintComponent(g);
         Graphics2D g2=(Graphics2D) g;
-        // button=new Button(7*60, 0*60,Color.BLUE);
-        button=new Button(7*Screen.tilesize,0*Screen.tilesize,120,60,"res/Menu.png");
         for (int i = 0; i < 6; i++) {
-            new Deck((i+1), 0,"res/Deck.png").Draw(g2);
+            new Deck((i+1), 0,"res\\plantstorage.png").Draw(g2);
         }
-        for(int j =1;j<7;j++){
-            for(int i =1;i<6;i++){
-                new Deck(i, j,"res/Deck.png").Draw(g2);;
+        for(int j =1;j<8;j++){
+            for(int i =0;i<7;i++){
+                new Deck(i, j,"res\\Inventory\\Brown.png").Draw(g2);;
             }
         }
         int si=1;
@@ -87,10 +86,31 @@ public class Inventory extends JPanel implements MouseListener{
                 inventorybag.Draw(g2);
             }
         }
+        new Button(0, 0, 60, 60, "res\\Inventory\\Back.png").Draw(g2);;
+        new Button(60,180,300,120,"res\\Inventory\\2by5.png").Draw(g2);
+        new Button(60,300,300,180,"res\\Inventory\\3by5.png").Draw(g2);
+        new Button(420,0,240,480,"res\\Inventory\\Sidewalk.png").Draw(g2);
+        button=new Button(7*Screen.tilesize,0*Screen.tilesize,120,60,"res\\Inventory\\survive.png");
         button.Draw(g2);
+        if(plantdata!=null){
+            String string;
+            Font font=new Font("Verdana",Font.BOLD,14);
+            g2.setFont(font);
+            g2.setColor(Color.BLACK);
+            string="Name:"+plantdata.getName();
+            g2.drawString(string, 85, 215);
+            string="Cost:"+plantdata.getCost();
+            g2.drawString(string, 85, 230);
+            string="Health:"+plantdata.getHealth();
+            g2.drawString(string, 85, 245);
+            string="Cooldown:"+plantdata.getCooldown();
+            g2.drawString(string, 85, 260);
+        }
         g2.dispose();
     }
-
+    public void setPlantdata(Plant plantdata) {
+        this.plantdata = plantdata;
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
     }
@@ -122,6 +142,7 @@ public class Inventory extends JPanel implements MouseListener{
                         if(inventorybag.picked){
                             inventorybag.picked=false;
                             bag.add(inventorybag);
+                            plantdata=inventorybag.getPlant();
                             deckInterator.remove();
                         }
                     }
@@ -132,6 +153,9 @@ public class Inventory extends JPanel implements MouseListener{
             if (mouseX >= x && mouseX <= (x+width) &&
             mouseY >= y && mouseY <= (y + height)&&decks.size()==6) {
                 Gamepanel.Startgame();
+            }
+            if(mouseX>=0&&mouseX<=60&&mouseY>=0&&mouseY<=60){
+                Gamepanel.mainMenubalik();
             }
             Iterator<Inventorybag> bagInterator = bag.iterator();
             while (bagInterator.hasNext()) {
@@ -146,6 +170,7 @@ public class Inventory extends JPanel implements MouseListener{
                         if(!inventorybag.picked&&decks.size()<6){
                             inventorybag.picked=true;
                             decks.add(inventorybag);
+                            plantdata=inventorybag.getPlant();
                             bagInterator.remove();
                         }
                     }

@@ -69,6 +69,8 @@ public class Inventorybag extends Square implements CustomListener {
     public void setPicked(Boolean picked) {
         this.picked = picked;
     }
-
+    public Plant getPlant() {
+        return plant;
+    }
 }
 

@@ -35,6 +35,7 @@ public class Zombie extends Square implements CustomListener {
                 if(check_Range(plant)){
                     Stop_moving();
                 target=plant;
+                timer=90;
                 }
             }
         }
@@ -43,7 +44,7 @@ public class Zombie extends Square implements CustomListener {
     public boolean check_Range(Shapes shape){
         if(shape!=null){
             if(Y==shape.Y){
-                if(X-1*Screen.tilesize<shape.getX()&&X>shape.getX()){
+                if(X-1*Screen.tilesize<shape.getX()&&X+30>shape.getX()){
                     return true;
                 }else
                 {
@@ -84,21 +85,25 @@ public class Zombie extends Square implements CustomListener {
     public void actionPerformed() {
         if(moving){
             if(is_slowed&&slowtime<180){
-                if (timer > 10){
+                if (timer >= 15){
                     X-=1;
-                    Plant_In_Range();
                     timer = 0;
+                    Plant_In_Range();
                 }
             }
             else{
-            if(timer>5){
+            if(timer>=10){
                 X-=1;
-                Plant_In_Range();
                 timer=0;
+                Plant_In_Range();
             }
             }
         }else{
-            if(timer>60){
+            if(timer>=90&&is_slowed&&slowtime<180){
+                Attack(target);
+                Plant_In_Range();
+                timer=0;
+            }else if(timer>=60){
                 Attack(target);
                 Plant_In_Range();
                 timer=0;
@@ -106,7 +111,7 @@ public class Zombie extends Square implements CustomListener {
         }
         timer++;
         slowtime++;
-        if(X== 30){
+        if(X<= 30){
             System.out.println("lose");
         }
     }

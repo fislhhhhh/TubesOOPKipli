@@ -7,10 +7,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Almanachoose extends JPanel implements MouseListener{
+public class Zombiealmanac extends JPanel implements MouseListener{
     private BufferedImage Png;
-    protected String picture="res/almanachoose.png";
-    Almanachoose(){
+    protected String picture="res/Almanac/Zombie.png";
+    Zombiealmanac(){
         this.setPreferredSize(new Dimension(Screen.tilesize*11,Screen.tilesize*8));
         this.setBackground(Color.white);
         this.setDoubleBuffered(true);
@@ -41,15 +41,13 @@ public class Almanachoose extends JPanel implements MouseListener{
         int mouseY = e.getY();
         if(mouseX>80&&mouseX<225&&mouseY>230&&mouseY<275){
             System.out.println("plant"); 
-            Gamepanel.plantAlmanac();
         }
         if(mouseX>435&&mouseX<574&&mouseY>230&&mouseY<275){
             System.out.println("zombos");
-            Gamepanel.zombieAlmanac();
        
         }
         if(mouseX>5&&mouseX<65&&mouseY>15&&mouseY<75){
-            Gamepanel.mainMenubalik();
+            Gamepanel.almanaChoose();
         }
     }
     @Override
@@ -63,3 +61,5 @@ public class Almanachoose extends JPanel implements MouseListener{
     }
 
 }
+
+

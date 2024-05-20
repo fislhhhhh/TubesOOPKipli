@@ -8,6 +8,7 @@ public class Savefile {
 
     public int s_sun;
     public int s_ticktime;
+    public int s_tickspawn;
 
     public ArrayList<String>bname=new ArrayList<>();
     public ArrayList<Integer>bx=new ArrayList<>();
@@ -47,6 +48,7 @@ public class Savefile {
 
         s_sun=saveformat.s_sun;
         s_ticktime=saveformat.s_ticktime;
+        s_tickspawn=saveformat.s_tickspawn;
 
         bname=saveformat.bname;
         bx=saveformat.bx;

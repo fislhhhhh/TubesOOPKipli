@@ -13,11 +13,12 @@ public class Loadgame {
                 int e=0;
                 int f=0;
                 int g=0;
-                try (FileReader reader = new FileReader("SaveFile.json")) {
+                try (FileReader reader = new FileReader("Save/SaveFIle.json")) {
                     Savefile savefile = gson.fromJson(reader, Savefile.class);
                     System.out.println("Data has been loaded from gameData.json");
                     Sun.sun.setSun(savefile.s_sun);
                     Gamepanel.ticksystem.setTime(savefile.s_ticktime);
+                    Gamepanel.ticksystem.setSpawntime(savefile.s_tickspawn);
                     for (int i = 0; i < savefile.jumlahdeck; i++) {
                         Plant plant=null;
                         switch (savefile.dStrings.get(i)) {

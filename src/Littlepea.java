@@ -25,32 +25,7 @@ public class Littlepea extends Plant  {
             dead=true;
         }
     }
-    public boolean check_Range(Shapes shape){
-        switch (range) {
-            case -1:
-            if(shape!=null){
-                if(Y==shape.getY()){
-                    System.out.println("case -1");
-                    return true;
-                }
-            }
-            break;
 
-            case 0:
-            System.out.println("case 0");
-            return true;
-
-            default:
-            if(shape!=null){
-                if(X<shape.getX()&&X+1*Screen.tilesize>shape.getX()){
-                    return true;
-                }
-            }
-            return false;
-        }
-        return false;
-        
-    }
     @Override
     public void actionPerformed() {
         boolean shootable=true;

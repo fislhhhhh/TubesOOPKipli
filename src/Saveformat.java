@@ -9,6 +9,7 @@ public class Saveformat {
     
     public int s_sun;
     public int s_ticktime;
+    public int s_tickspawn;
 
     public ArrayList<String>dStrings=new ArrayList<>();
     public ArrayList<Integer>dtimer=new ArrayList<>();
@@ -45,13 +46,14 @@ public class Saveformat {
     public ArrayList<Integer>aztime=new ArrayList<>();
     public ArrayList<Boolean>zjump=new ArrayList<>();    
 
-    public void setSave(int s_sun,ArrayList<Plant> s_plant, ArrayList<Zombie> s_zombie,ArrayList<Bullet> s_bullet,int s_ticktime,ArrayList<Inventorybag> s_decks){
+    public void setSave(int s_sun,ArrayList<Plant> s_plant, ArrayList<Zombie> s_zombie,ArrayList<Bullet> s_bullet,int s_ticktime,ArrayList<Inventorybag> s_decks,int s_tickspawn){
         this.s_sun=s_sun;
         this.s_plant=s_plant;
         this.s_zombie=s_zombie;
         this.s_ticktime=s_ticktime;
         this.s_decks=s_decks;
         this.s_bullet=s_bullet;
+        this.s_tickspawn=s_tickspawn;
         formatData();
     }
     public void formatData(){
