@@ -72,9 +72,6 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
                 si++;
             }
         }
-        if(deck!=null){
-            deck.Draw(g2);
-        }
         if(day){
             new Deck(0,0 ,"res/sun.jpg").Draw(g2);
         }else{
@@ -85,6 +82,13 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
         g2.setColor(Color.BLACK);
         String string=Sun.totalsun+"";
         g2.drawString(string, 20, 60);
+        if(deck!=null){
+            deck.Draw(g2);
+        }
+        // g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        // g2.setColor(new Color(56, 17, 146));
+        // g2.fillRect(0, 0, 11*60, 8*60);;
+        // g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
         g2.dispose();
     }
     public void screenrefresh(){
@@ -183,23 +187,29 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
                         plants.remove(toRemove);
                         toRemove=null;
                     }
-                    if(Moveplant.plant.getCost()<=Sun.totalsun){
-                        if(Moveplant!=null){
+                    if(Moveplant!=null){
+                        if(Moveplant.plant.getCost()<=Sun.totalsun){
+                            if(Moveplant!=null){
+                                Moveplant.picked=true;
+                                dragging=false;
+                                Moveplant.setOn_Cooldown(true);
+                                System.out.println(Moveplant.plant.getCost());
+                                Sun.sunpakai(Moveplant.plant.getCost());
+                                Moveplant=null;
+                                planted.spawn_Plant(lily);
+                                lily=false;
+                                deck=null;
+                            }
+    
+                        }else{
                             Moveplant.picked=true;
                             dragging=false;
-                            Moveplant.setOn_Cooldown(true);
-                            System.out.println(Moveplant.plant.getCost());
-                            Sun.sunpakai(Moveplant.plant.getCost());
                             Moveplant=null;
-                            planted.spawn_Plant(lily);
-                            lily=false;
                             deck=null;
                         }
 
                     }else{
-                        Moveplant.picked=true;
                         dragging=false;
-                        Moveplant=null;
                         deck=null;
                     }
                 }
@@ -207,9 +217,9 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
                 Moveplant.X=Moveplant.X2;
                 Moveplant.Y=Moveplant.Y2;
                 deck=null; 
+                Moveplant.picked=true;
                 Moveplant=null;
                 dragging=false;
-                Moveplant.picked=true;
             }
         }else{
             Iterator<Plant> plantIterator = Screen.plants.iterator();
@@ -232,23 +242,37 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
             float xf=0;
             float yf=0;
             if(shovel){
-                xf=(mouseX-dragOffsetX)/tilesize;
-                yf=(mouseY-dragOffsetY)/tilesize;
+                xf=(mouseX)/tilesize;
+                yf=(mouseY)/tilesize;
             }else{
                 Moveplant.X=mouseX-dragOffsetX;
                 Moveplant.Y=mouseY-dragOffsetY;
-                xf=Moveplant.X/tilesize;
-                yf=Moveplant.Y/tilesize;
+                xf=(Moveplant.X+30)/tilesize;
+                yf=(Moveplant.Y+30)/tilesize;
             }
             int xi=Math.round(xf);
             int yi=Math.round(yf);
+            boolean lily=true;
+            if(xi>0 && xi<10&&yi>2&&yi<5){
+                lily=false;
+                for (int i = 0; i < Screen.plants.size(); i++) {
+                    if(Screen.plants.get(i)!=null){
+                        if(Screen.plants.get(i).getName()=="Lilypad"){
+                            if(Screen.plants.get(i).getX()/60==xi&&Screen.plants.get(i).getY()/60==yi){
+                                lily=true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
             if(shovel){
                 deck=new Deck(xi, yi, "res/shovel1.png");
             }else{
-                if(xi>0 && xi<10){
+                if(xi>0 && xi<10&&lily){
                     if(yi>0&&yi<7){
                         Plant plant=Moveplant.plant;
-                        deck=new Deck(xi, yi, plant.getPicture());
+                        deck=new Planthighlight(xi, yi, plant.getPicture());
                         plant.X=xi*tilesize;
                         plant.Y=yi*tilesize;
                         planted=plant;
@@ -264,7 +288,7 @@ public class Screen extends JPanel implements MouseListener, MouseMotionListener
                     if(xi>0 && xi<10){
                         if(yi>2&&yi<5){
                             Plant plant=Moveplant.plant;
-                            deck=new Deck(xi, yi, plant.getPicture());
+                            deck=new Planthighlight(xi, yi, plant.getPicture());
                             plant.X=xi*tilesize;
                             plant.Y=yi*tilesize;
                             planted=plant;

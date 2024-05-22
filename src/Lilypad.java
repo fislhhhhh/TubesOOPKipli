@@ -10,7 +10,7 @@ public class Lilypad extends Plant  {
         attack_damage=0;
         range=0;
         cooldown=10;
-        picture="res/Plants/Lilypad.jpg";
+        picture="res\\Plants\\Lilypad.png";
     }
 
     public void shoot(){

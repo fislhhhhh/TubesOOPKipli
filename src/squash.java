@@ -9,7 +9,7 @@ public class Squash extends Plant  {
         attack_damage=5000;
         range=1;
         cooldown=20;
-        picture="res/Plants/Squash.jpg";
+        picture="res\\Plants\\Squash.png";
     }
 
     public void shoot(){

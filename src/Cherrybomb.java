@@ -9,7 +9,7 @@ public class Cherrybomb extends Plant  {
         attack_damage=5000;
         range=1;
         cooldown=20;
-        picture="res/Plants/Cheerybomb.png";
+        picture="res\\Plants\\Cherry.png";
     }
 
     public void shoot(){

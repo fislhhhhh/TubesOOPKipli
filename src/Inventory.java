@@ -73,6 +73,7 @@ public class Inventory extends JPanel implements MouseListener{
             }
         }
         int si=1;
+        new Button(60,60,300,120,"res\\Inventory\\2by5.png").Draw(g2);
         for (Inventorybag inventorybag : decks) {
             if(inventorybag!=null){
                 inventorybag.X2=si*60;
@@ -86,7 +87,7 @@ public class Inventory extends JPanel implements MouseListener{
                 inventorybag.Draw(g2);
             }
         }
-        new Button(0, 0, 60, 60, "res\\Inventory\\Back.png").Draw(g2);;
+        new Button(0, 0, 60, 60, "res\\Inventory\\Back.png").Draw(g2);
         new Button(60,180,300,120,"res\\Inventory\\2by5.png").Draw(g2);
         new Button(60,300,300,180,"res\\Inventory\\3by5.png").Draw(g2);
         new Button(420,0,240,480,"res\\Inventory\\Sidewalk.png").Draw(g2);

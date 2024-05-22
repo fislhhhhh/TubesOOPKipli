@@ -41,11 +41,13 @@ public class Gamepanel  {
         frame.add(screen);
         frame.pack();
         frame.setLocationRelativeTo(null);
+        ticksystem.setRunning(false);
         frame.setVisible(true);
         if(!ticksystem.getRunning()){
             ticksystem.Startgame();
             ticksystem.setRunning(true);
             inventory.filledInventory();
+            System.out.println("test");
             ticksystem.start(true);
         }
         Loadgame.loading();

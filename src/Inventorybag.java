@@ -6,17 +6,16 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Inventorybag extends Square implements CustomListener {
-    Plant plant;//3
+    Plant plant;
     private BufferedImage Png;
-    Boolean picked = false;//selalu true
+    Boolean picked = false;
     int X2=0;
     int Y2=0;
-    int timer=0;//1
-    private boolean on_cooldown=false;//2
+    int timer=0;
+    private boolean on_cooldown=false;
     protected Inventorybag(int X, int Y,Plant plant) {
         super(X*Screen.tilesize, Y*Screen.tilesize);
         this.plant=plant;
-        //TODO Auto-generated constructor stub
     }
     public void Draw(Graphics2D g2) {
         try {
@@ -32,7 +31,7 @@ public class Inventorybag extends Square implements CustomListener {
             }
         }else{
             try {
-                Png = ImageIO.read(new File("res/Deck.png"));
+                Png = ImageIO.read(new File("res/Deck.png"));//gambar cooldown
             } catch (IOException e) {
                 e.printStackTrace();
             }

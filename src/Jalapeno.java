@@ -9,7 +9,7 @@ public class Jalapeno  extends Plant {
         attack_damage=5000;
         range=-1;
         cooldown=20;
-        picture="res/Plants/jalapeno.jpg";
+        picture="res\\Plants\\jalapeno.png";
     }
 
     public void shoot(){

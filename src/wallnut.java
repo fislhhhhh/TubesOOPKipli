@@ -9,7 +9,7 @@ public class Wallnut extends Plant {
         attack_damage=0;
         range=0;
         cooldown=20;
-        picture="res/Plants/wallnut.jpg";
+        picture="res\\Plants\\Wallnut.png";
     }
 
     public void shoot(){
@@ -19,7 +19,6 @@ public class Wallnut extends Plant {
     
     @Override
     public void actionPerformed() {
-        System.out.println(this.getHealth());
     }
     public void spawn_Plant(boolean lily){
         Wallnut wallnut=new Wallnut(X, Y);

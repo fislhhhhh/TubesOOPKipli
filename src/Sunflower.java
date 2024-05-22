@@ -9,7 +9,7 @@ public class Sunflower extends Plant   {
         attack_damage=0;
         range=0;
         cooldown=10;
-        picture="res/Plants/Sunflowerremove.png";
+        picture="res\\Plants\\Sunflower.png";
     }
 
 

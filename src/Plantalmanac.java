@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Plantalmanac extends JPanel implements MouseListener{
     private BufferedImage Png;
     protected String picture="res/Almanac/Plant.png";
-    private String bigpath="res\\Almanac\\Snowpea.PNG";
+    private String bigpath="res\\Almanac\\Squash.png";
     Plantalmanac(){
         this.setPreferredSize(new Dimension(Screen.tilesize*11,Screen.tilesize*8));
         this.setBackground(Color.white);
@@ -49,7 +49,7 @@ public class Plantalmanac extends JPanel implements MouseListener{
         DrawGiant((Graphics2D) g);
         for (int i = 1; i < 6; i++) {
             DrawSmall((Graphics2D) g,"res\\Almanac\\Snowpea.PNG",i,2);
-            DrawSmall((Graphics2D) g,"res\\Almanac\\Snowpea.PNG",i,4);
+            DrawSmall((Graphics2D) g,"res\\Almanac\\Squash.png",i,4);
         }
     }
 
