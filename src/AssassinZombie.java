@@ -53,6 +53,10 @@ public class AssassinZombie extends Zombie {
         }
         timer++;
         timerY++;
+        if(X<= 30){
+            System.out.println("lose");
+            Gamepanel.losescene();
+        }
 
     }
     public int getTimerY() {

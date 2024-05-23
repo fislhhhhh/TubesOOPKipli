@@ -125,6 +125,7 @@ public class Ticksystem implements Runnable {
         }
         if(time>=200&&Screen.zombies.isEmpty()){
             System.out.println("gameover");
+            Gamepanel.winscene();
         }
         if(start){
             this.setCustomListener(Sun.sun);

@@ -32,8 +32,9 @@ public class ScreenDoorZombie extends Zombie {
             }
         }
         timer++;
-        if(X== 30){
+        if(X<= 30){
             System.out.println("lose");
+            Gamepanel.losescene();
         }
     }
     
