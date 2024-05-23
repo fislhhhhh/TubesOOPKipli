@@ -11,7 +11,7 @@ public class Losescene extends JPanel implements MouseListener{
     private BufferedImage Png;
     protected String picture="res/llosescene.png";
     Losescene(){
-        this.setPreferredSize(new Dimension(Screen.tilesize*5,Screen.tilesize*4));
+        this.setPreferredSize(new Dimension(Screen.tilesize*11,Screen.tilesize*8));
         this.setBackground(Color.gray);
         this.setDoubleBuffered(true);
         addMouseListener(this);
@@ -24,7 +24,7 @@ public class Losescene extends JPanel implements MouseListener{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        g2.drawImage(Png,0,0,5*Screen.tilesize,4*Screen.tilesize,null);
+        g2.drawImage(Png,0,0,11*Screen.tilesize,8*Screen.tilesize,null);
     }
     @Override
     protected void paintComponent(Graphics g) {
@@ -39,7 +39,7 @@ public class Losescene extends JPanel implements MouseListener{
     public void mousePressed(MouseEvent e) {
         int mouseX = e.getX();
         int mouseY = e.getY();
-        if(mouseX>30&&mouseX<250&&mouseY>190&&mouseY<225){
+        if(mouseX>105&&mouseX<565&&mouseY>390&&mouseY<440){
             System.out.println("plant"); 
             Gamepanel.mainMenubalik();
         }

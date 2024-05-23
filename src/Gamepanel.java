@@ -109,9 +109,7 @@ public class Gamepanel  {
         frame.setVisible(true);
     }
     public static void winscene(){
-        frame =new JFrame();
-        frame.setTitle("Win");
-        frame.remove(mainmenu);
+        frame.remove(screen);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
         frame.add(wwinscene);
@@ -119,10 +117,16 @@ public class Gamepanel  {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         ticksystem.setRunning(false);
+        ticksystem.start(false);
+        Sun.sun.setSun(50);
+        Screen.plants.clear();
+        Screen.zombies.clear();
+        Screen.bullets.clear();
+        ticksystem.setTime(0);
+        ticksystem.setSpawntime(0);
     }
     public static void losescene(){
-        frame =new JFrame();
-        frame.setTitle("Lose");
+        frame.remove(screen);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
         frame.add(llosescene);
@@ -130,6 +134,13 @@ public class Gamepanel  {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         ticksystem.setRunning(false);
+        ticksystem.start(false);
+        Sun.sun.setSun(50);
+        Screen.plants.clear();
+        Screen.zombies.clear();
+        Screen.bullets.clear();
+        ticksystem.setTime(0);
+        ticksystem.setSpawntime(0);
     }
     public static void plantAlmanac(){
         frame.remove(almanachoose);

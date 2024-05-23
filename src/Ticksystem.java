@@ -120,6 +120,9 @@ public class Ticksystem implements Runnable {
         }else{
             timer++;
         }
+        if(!Screen.day&&time<100){
+            Screen.day=true;
+        }
         if(time>100){
             Screen.day=false;
         }

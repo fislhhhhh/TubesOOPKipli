@@ -24,7 +24,7 @@ public class RaZombie extends Zombie {
     public void actionPerformed() {
         if(moving){
             if(is_slowed){
-                if (timer >= 15){
+                if (timer >= 20){
                     X-=1;
                     timer = 0;
                     Plant_In_Range();

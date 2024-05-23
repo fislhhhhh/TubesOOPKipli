@@ -1,11 +1,11 @@
 {
   "dStrings": [
     "Sunflower",
+    "Littlepea",
     "Peashooter",
-    "Lilypad",
-    "Snowpea",
-    "Squash",
-    "Wallnut"
+    "Doompea",
+    "Cherrybomb",
+    "Lilypad"
   ],
   "dtimer": [
     0,
@@ -13,7 +13,7 @@
     0,
     0,
     0,
-    0
+    63
   ],
   "dcooldown": [
     false,
@@ -21,21 +21,36 @@
     false,
     false,
     false,
-    false
+    true
   ],
   "jumlahdeck": 6,
-  "s_sun": 100,
-  "s_ticktime": 15,
-  "s_tickspawn": 15,
+  "s_sun": 150,
+  "s_ticktime": 26,
+  "s_tickspawn": 0,
   "bname": [],
   "bx": [],
   "by": [],
   "bdamage": [],
-  "pname": [],
-  "px": [],
-  "py": [],
-  "phealth": [],
-  "ptimer": [],
+  "pname": [
+    "Sunflower",
+    "Lilypad"
+  ],
+  "px": [
+    300,
+    60
+  ],
+  "py": [
+    120,
+    180
+  ],
+  "phealth": [
+    100,
+    100
+  ],
+  "ptimer": [
+    0,
+    0
+  ],
   "pfp": [],
   "lptimer": [],
   "lpdamage": [],

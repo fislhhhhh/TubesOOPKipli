@@ -85,7 +85,7 @@ public class Zombie extends Square implements CustomListener {
     public void actionPerformed() {
         if(moving){
             if(is_slowed&&slowtime<180){
-                if (timer >= 15){
+                if (timer >= 20){
                     X-=1;
                     timer = 0;
                     Plant_In_Range();

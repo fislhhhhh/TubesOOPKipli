@@ -11,7 +11,7 @@ public class Winscene extends JPanel implements MouseListener{
     private BufferedImage Png;
     protected String picture="res/wwinscene.png";
     Winscene(){
-        this.setPreferredSize(new Dimension(Screen.tilesize*5,Screen.tilesize*4));
+        this.setPreferredSize(new Dimension(Screen.tilesize*11,Screen.tilesize*8));
         this.setBackground(Color.white);
         this.setDoubleBuffered(true);
         addMouseListener(this);
@@ -24,7 +24,7 @@ public class Winscene extends JPanel implements MouseListener{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        g2.drawImage(Png,0,0,5*Screen.tilesize,4*Screen.tilesize,null);
+        g2.drawImage(Png,0,0,11*Screen.tilesize,8*Screen.tilesize,null);
     }
     @Override
     protected void paintComponent(Graphics g) {
@@ -39,7 +39,7 @@ public class Winscene extends JPanel implements MouseListener{
     public void mousePressed(MouseEvent e) {
         int mouseX = e.getX();
         int mouseY = e.getY();
-        if(mouseX>90&&mouseX<210&&mouseY>190&&mouseY<225){
+        if(mouseX>205&&mouseX<455&&mouseY>390&&mouseY<425){
             System.out.println("plant"); 
             Gamepanel.mainMenubalik();
         }

@@ -21,7 +21,7 @@ public class PoleVaultingZombie extends Zombie {
         attack_damage=100;
         attack_speed=1;
         is_aquatic=false;
-        picture="res/Zombies/PoleVaultingZombie.jpeg";
+        picture="res\\Zombies\\Pole.png";
     }
     public boolean getis_jump(){
         return is_jump;
