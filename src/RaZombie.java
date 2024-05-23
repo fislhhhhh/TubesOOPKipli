@@ -53,8 +53,9 @@ public class RaZombie extends Zombie {
         }
         timer++;
         time++;
-        if(X== 30){
+        if(X<= 30){
             System.out.println("lose");
+            Gamepanel.losescene();
         }
     }
 
