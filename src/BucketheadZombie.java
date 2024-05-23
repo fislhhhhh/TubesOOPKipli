@@ -8,6 +8,6 @@ public class BucketheadZombie extends Zombie {
         attack_damage=100;
         attack_speed=1;
         is_aquatic=false;
-        picture="res/Zombies/BucketheadZombie.jpeg";
+        picture="res\\Zombies\\Buckethead.png";
     }
 }

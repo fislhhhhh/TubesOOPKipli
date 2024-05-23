@@ -7,7 +7,7 @@ public class ConeheadZombie extends Zombie {
         attack_speed=1;
         is_aquatic=false;
         moving=true;
-        picture="res/Zombies/ConeheadZombie.jpeg";
+        picture="res\\Zombies\\Conehead.png";
     }
     
 }

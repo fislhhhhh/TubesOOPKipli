@@ -9,7 +9,7 @@ public class DuckyTubeZombie extends Zombie {
         attack_speed=1;
         is_aquatic=true;
         moving=true;
-        picture="res/Zombies/DuckyTubeZombie.jpeg";
+        picture="res\\Zombies\\Duckeyp.png";
     }
 
 }

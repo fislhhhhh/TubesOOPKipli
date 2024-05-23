@@ -17,7 +17,7 @@ public class RaZombie extends Zombie {
         attack_damage=100;
         attack_speed=1;
         is_aquatic=false;
-        picture="res/Zombies/razombie.jpg";
+        picture="res\\Zombies\\Razombie.png";
     }
 
     @Override
