@@ -20,7 +20,7 @@ public class DolphinRiderZombie extends Zombie {
         attack_damage=100;
         attack_speed=1;
         is_aquatic=true;
-        picture="res/Zombies/dolphinezombie.jpg";
+        picture="res\\Zombies\\Dolphinp.png";
     }
     public boolean getis_jump(){
         return is_jump;

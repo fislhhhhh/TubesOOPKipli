@@ -6,6 +6,6 @@ public class DiggerZombie extends Zombie {
         attack_damage=100;
         attack_speed=1;
         is_aquatic=false;
-        picture="res/Zombies/DiggerZombie.jpeg";
+        picture="res\\Zombies\\Digger.png";
     }
 }

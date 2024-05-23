@@ -126,6 +126,7 @@ public class Gamepanel  {
     public static void mainMenubalik(){
         frame.remove(almanachoose);
         frame.remove(inventory);
+        frame.remove(help);
         inventory.setPlantdata(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);

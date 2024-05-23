@@ -12,7 +12,7 @@ public class Help extends JPanel implements MouseListener{
     private BufferedImage Png;
     protected String picture="res/Help.png";
     Help(){
-        this.setPreferredSize(new Dimension(Screen.tilesize*10,Screen.tilesize*6));
+        this.setPreferredSize(new Dimension(Screen.tilesize*11,Screen.tilesize*8));
         this.setBackground(Color.white);
         this.setDoubleBuffered(true);
         addMouseListener(this);
@@ -25,12 +25,11 @@ public class Help extends JPanel implements MouseListener{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        g2.drawImage(Png,0,0,10*Screen.tilesize,6*Screen.tilesize,null);
+        g2.drawImage(Png,0,0,11*Screen.tilesize,8*Screen.tilesize,null);
     }
     @Override
     protected void paintComponent(Graphics g) {
         Draw((Graphics2D) g);
-        
     }
 
     @Override
@@ -41,7 +40,7 @@ public class Help extends JPanel implements MouseListener{
     public void mousePressed(MouseEvent e) {
         int mouseX = e.getX();
         int mouseY = e.getY();
-        if(mouseX>0&&mouseX<60&&mouseY>0&&mouseY<60){
+        if(mouseX>10&&mouseX<70&&mouseY>20&&mouseY<80){
             Gamepanel.mainMenubalik();
         }
     }

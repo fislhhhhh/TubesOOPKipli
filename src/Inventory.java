@@ -7,11 +7,15 @@ import java.util.Iterator;
 
 public class Inventory extends JPanel implements MouseListener{
     Button button;
+    Button button2;
     ArrayList<Plant>Iplant = new ArrayList<>();
     ArrayList<Inventorybag> bag=new ArrayList<>();
     static ArrayList<Inventorybag> decks=new ArrayList<>();
     boolean deckarea=false;
     Plant plantdata=null;
+    private boolean swapmode=false;
+    private Inventorybag swap1=null;
+    private Inventorybag swap2=null;
     Inventory(){
         this.setPreferredSize(new Dimension(Screen.tilesize*11,Screen.tilesize*8));
         this.setBackground(Color.BLACK);
@@ -59,6 +63,26 @@ public class Inventory extends JPanel implements MouseListener{
             }
         }
     }
+    private void swaping(Inventorybag in1,Inventorybag in2){
+        int x1;
+        int x2;
+        int y1;
+        int y2;
+        x1=in1.getX();
+        y1=in1.getY();
+        x2=in2.getX();
+        y2=in2.getY();
+        int index1=bag.indexOf(in1);
+        int index2=bag.indexOf(in2);
+        in1.setX(x2);
+        in1.setY(y2);
+        in2.setX(x1);
+        in2.setY(y1);
+        bag.remove(index1);
+        bag.add(index1, in2);
+        bag.remove(index2); 
+        bag.add(index2, in1);
+    }
     @Override
     protected void paintComponent(Graphics g) {
         
@@ -74,6 +98,7 @@ public class Inventory extends JPanel implements MouseListener{
         }
         int si=1;
         new Button(60,60,300,120,"res\\Inventory\\2by5.png").Draw(g2);
+
         for (Inventorybag inventorybag : decks) {
             if(inventorybag!=null){
                 inventorybag.X2=si*60;
@@ -92,19 +117,21 @@ public class Inventory extends JPanel implements MouseListener{
         new Button(60,300,300,180,"res\\Inventory\\3by5.png").Draw(g2);
         new Button(420,0,240,480,"res\\Inventory\\Sidewalk.png").Draw(g2);
 
-        new Button(480, 60, 60, 60, "res\\Zombies\\Zombie.png").Draw(g2);
+        new Button(480, 120, 60, 60, "res\\Zombies\\Zombie.png").Draw(g2);
         new Button(540, 60, 60, 60, "res\\Zombies\\Buckethead.png").Draw(g2);
         new Button(540, 120, 60, 60, "res\\Zombies\\Conehead.png").Draw(g2);
         new Button(540, 180, 60, 60, "res\\Zombies\\Razombie.png").Draw(g2);
         new Button(520, 240, 60, 60, "res\\Zombies\\Assasinzombie.png").Draw(g2);
         new Button(460, 350, 60, 60, "res\\Zombies\\Duckey.png").Draw(g2);
-        new Button(480, 180, 60, 60, "res\\Zombies\\Conehead.png").Draw(g2);
-        new Button(520, 360, 60, 60, "res\\Zombies\\Razombie.png").Draw(g2);
+        new Button(480, 180, 60, 60, "res\\Zombies\\Digger.png").Draw(g2);
+        new Button(520, 360, 60, 60, "res\\Zombies\\Dolphin.png").Draw(g2);
         new Button(480, 300, 60, 60, "res\\Zombies\\Conehead.png").Draw(g2);
         new Button(550, 300, 60, 60, "res\\Zombies\\Razombie.png").Draw(g2);
         
         button=new Button(7*Screen.tilesize,0*Screen.tilesize,120,60,"res\\Inventory\\survive.png");
         button.Draw(g2);
+        button2=new Button(7*Screen.tilesize, 1*Screen.tilesize, 120, 60,"res\\Inventory\\Swap.png" );
+        button2.Draw(g2);
         if(plantdata!=null){
             String string;
             Font font=new Font("Verdana",Font.BOLD,14);
@@ -141,7 +168,40 @@ public class Inventory extends JPanel implements MouseListener{
         }else {
             deckarea=false;
         }
-        if(deckarea){
+        if(swapmode){
+                Iterator<Inventorybag> bagInterator = bag.iterator();
+                while (bagInterator.hasNext()) {
+                    Inventorybag inventorybag = bagInterator.next();
+                    if(inventorybag!=null){
+                        x=inventorybag.getX();
+                        y=inventorybag.getY();
+                        width=Screen.tilesize;
+                        height=Screen.tilesize;
+                    if (mouseX >= x && mouseX <= (x+width) &&
+                        mouseY >= y && mouseY <= (y + height)) {
+                            if(!inventorybag.picked){
+                                System.out.println(inventorybag.plant);
+                                if(swap1==null){
+                                    swap1=inventorybag;
+
+                                }else{
+                                    swap2=inventorybag;
+
+                                }
+                            }
+                        }
+                    }
+                } 
+                if(swap1!=null&&swap2!=null){
+                    swaping(swap1, swap2);
+                    swap2.picked=false;
+                    swap1.picked=false;
+                    swap2=null;
+                    swap1=null;
+                    swapmode=false;
+                }
+            
+        }else if(deckarea){
             Iterator<Inventorybag> deckInterator = decks.iterator();
             while (deckInterator.hasNext()) {
                 Inventorybag inventorybag = deckInterator.next();
@@ -166,6 +226,13 @@ public class Inventory extends JPanel implements MouseListener{
             if (mouseX >= x && mouseX <= (x+width) &&
             mouseY >= y && mouseY <= (y + height)&&decks.size()==6) {
                 Gamepanel.Startgame();
+            }
+            x=button2.getX();
+            y=button2.getY();
+            if (mouseX >= x && mouseX <= (x+width) &&
+            mouseY >= y && mouseY <= (y + height)) {
+                swapmode=true;
+                System.out.println("test");
             }
             if(mouseX>=0&&mouseX<=60&&mouseY>=0&&mouseY<=60){
                 Gamepanel.mainMenubalik();
