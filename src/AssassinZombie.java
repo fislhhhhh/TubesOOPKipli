@@ -12,7 +12,7 @@ public class AssassinZombie extends Zombie {
         attack_damage=100;
         attack_speed=2;
         is_aquatic=true;
-        picture="res/Zombies/AssassinZombie.jpeg";
+        picture="res\\Zombies\\Assasinzombie.png";
     }
 
     @Override

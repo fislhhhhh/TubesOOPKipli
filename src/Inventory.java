@@ -91,6 +91,18 @@ public class Inventory extends JPanel implements MouseListener{
         new Button(60,180,300,120,"res\\Inventory\\2by5.png").Draw(g2);
         new Button(60,300,300,180,"res\\Inventory\\3by5.png").Draw(g2);
         new Button(420,0,240,480,"res\\Inventory\\Sidewalk.png").Draw(g2);
+
+        new Button(480, 60, 60, 60, "res\\Zombies\\Zombie.png").Draw(g2);
+        new Button(540, 60, 60, 60, "res\\Zombies\\Buckethead.png").Draw(g2);
+        new Button(540, 120, 60, 60, "res\\Zombies\\Conehead.png").Draw(g2);
+        new Button(540, 180, 60, 60, "res\\Zombies\\Razombie.png").Draw(g2);
+        new Button(520, 240, 60, 60, "res\\Zombies\\Assasinzombie.png").Draw(g2);
+        new Button(460, 350, 60, 60, "res\\Zombies\\Duckey.png").Draw(g2);
+        new Button(480, 180, 60, 60, "res\\Zombies\\Conehead.png").Draw(g2);
+        new Button(520, 360, 60, 60, "res\\Zombies\\Razombie.png").Draw(g2);
+        new Button(480, 300, 60, 60, "res\\Zombies\\Conehead.png").Draw(g2);
+        new Button(550, 300, 60, 60, "res\\Zombies\\Razombie.png").Draw(g2);
+        
         button=new Button(7*Screen.tilesize,0*Screen.tilesize,120,60,"res\\Inventory\\survive.png");
         button.Draw(g2);
         if(plantdata!=null){

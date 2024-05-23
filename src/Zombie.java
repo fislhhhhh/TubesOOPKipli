@@ -15,7 +15,7 @@ public class Zombie extends Square implements CustomListener {
     protected int timer=0;
     protected boolean dead=false;
     protected Plant target=null;
-    protected String picture="res/Zombies/NormalZombie.jpg";
+    protected String picture="res\\Zombies\\Zombie.png";
     protected Boolean is_slowed=false;
     protected int slowtime=0;
     public void Attack(Plant plant){
