@@ -10,7 +10,7 @@ public class Peashooter extends Plant  {
         attack_damage=25;
         range=-1;
         cooldown=10;
-        picture="res/Plants/images.jpg";
+        picture="res\\Plants\\Peashooter.png";
     }
 
     @Override

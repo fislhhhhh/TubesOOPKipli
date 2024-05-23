@@ -1,11 +1,11 @@
 {
   "dStrings": [
+    "Sunflower",
+    "Peashooter",
     "Lilypad",
-    "Cherrybomb",
-    "Jalapeno",
     "Snowpea",
-    "Wallnut",
-    "Sunflower"
+    "Squash",
+    "Wallnut"
   ],
   "dtimer": [
     0,
@@ -24,9 +24,9 @@
     false
   ],
   "jumlahdeck": 6,
-  "s_sun": 50,
-  "s_ticktime": 5,
-  "s_tickspawn": 5,
+  "s_sun": 100,
+  "s_ticktime": 15,
+  "s_tickspawn": 15,
   "bname": [],
   "bx": [],
   "by": [],

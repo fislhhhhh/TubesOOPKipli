@@ -11,7 +11,7 @@ public class Snowpea extends Plant {
         attack_damage=25;
         range=-1;
         cooldown=10;
-        picture="res/Plants/Snow.jpg";
+        picture="res\\Plants\\Snowpea.png";
     }
 
     public void shoot(){
