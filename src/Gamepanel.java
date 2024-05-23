@@ -10,6 +10,8 @@ public class Gamepanel  {
     static Plantalmanac plantalmanac= new Plantalmanac();
     static Zombiealmanac zombiealmanac = new Zombiealmanac();
     static Help help = new Help();
+    static Winscene wwinscene = new Winscene();
+    static Losescene llosescene = new Losescene();
     public static void Startgame() {
         frame.remove(inventory);
         inventory.setPlantdata(null);
@@ -29,6 +31,7 @@ public class Gamepanel  {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        
         if(!ticksystem.getRunning()){
             ticksystem.Startgame();
             ticksystem.setRunning(true);
@@ -105,6 +108,29 @@ public class Gamepanel  {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+    public static void winscene(){
+        frame =new JFrame();
+        frame.setTitle("Win");
+        frame.remove(mainmenu);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+        frame.add(wwinscene);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        ticksystem.setRunning(false);
+    }
+    public static void losescene(){
+        frame =new JFrame();
+        frame.setTitle("Lose");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+        frame.add(llosescene);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        ticksystem.setRunning(false);
+    }
     public static void plantAlmanac(){
         frame.remove(almanachoose);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,6 +152,10 @@ public class Gamepanel  {
     public static void mainMenubalik(){
         frame.remove(almanachoose);
         frame.remove(inventory);
+        frame.remove(help);
+        frame.remove(wwinscene);
+        frame.remove(llosescene);
+        frame.remove(wwinscene);
         inventory.setPlantdata(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);

@@ -113,6 +113,7 @@ public class Zombie extends Square implements CustomListener {
         slowtime++;
         if(X<= 30){
             System.out.println("lose");
+            Gamepanel.losescene();
         }
     }
     public boolean getDead(){
