@@ -2,53 +2,48 @@
   "dStrings": [
     "Sunflower",
     "Littlepea",
-    "Peashooter",
     "Doompea",
-    "Cherrybomb",
-    "Lilypad"
+    "Peashooter",
+    "Lilypad",
+    "Cherrybomb"
   ],
   "dtimer": [
+    262,
     0,
     0,
     0,
     0,
-    0,
-    63
+    0
   ],
   "dcooldown": [
+    true,
     false,
     false,
     false,
     false,
-    false,
-    true
+    false
   ],
   "jumlahdeck": 6,
-  "s_sun": 150,
-  "s_ticktime": 26,
-  "s_tickspawn": 0,
+  "s_sun": 50,
+  "s_ticktime": 7,
+  "s_tickspawn": 7,
   "bname": [],
   "bx": [],
   "by": [],
   "bdamage": [],
   "pname": [
-    "Sunflower",
-    "Lilypad"
+    "Sunflower"
   ],
   "px": [
-    300,
     60
   ],
   "py": [
-    120,
-    180
+    120
   ],
   "phealth": [
-    100,
     100
   ],
   "ptimer": [
-    0,
     0
   ],
   "pfp": [],
